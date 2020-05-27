@@ -71,7 +71,7 @@ int		ft_raycast(t_cub *cub)
 		ft_init_camera(cub, x, width);
 		ft_get_sides(cub);
 		ft_wall_search(cub);
-		ft_draw_wall(cub);
+		ft_get_wall(cub);
 		ft_draw(cub, x);
 		x++;
 	}

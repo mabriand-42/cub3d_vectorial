@@ -26,11 +26,13 @@ typedef	struct	s_window
 typedef	struct	s_image
 {
 	void	*img_ptr;
-	char 	*addr;
+	void 	*addr;
+	int		*i_addr;
 	int		bpp;
 	int		size_line;
 	int		endian;
 	t_reso	r;
+	char	*path;
 }				t_image;
 
 
@@ -63,10 +65,23 @@ typedef struct	s_cast
 	t_vect	delta_dist;
 	t_box	step;
 	t_box	map;
-	//int		side;
 	t_card	wall;
+	double	line_height;
+	double	slice;
+	double	in_w;
+	t_box	in_t;
+
 }				t_cast;
 
+typedef	struct	s_texture
+{
+	t_image	no_img;
+	t_image	so_img;
+	t_image	we_img;
+	t_image	ea_img;
+	t_image	s_img;
+
+}				t_texture;
 
 typedef struct	s_draw
 {
@@ -93,6 +108,7 @@ typedef struct	s_cub
 	t_cast		cast;
 	t_draw		draw;
 
+	t_texture	texture;
 }				t_cub;
 
 

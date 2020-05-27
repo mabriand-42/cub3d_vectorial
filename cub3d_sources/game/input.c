@@ -84,6 +84,12 @@ void	ft_equivalent_data(t_pars *pars, t_cub *cub)
 					pars->data.f.g, pars->data.f.b);
 	cub->box_map = pars->map.two_d;
 	ft_get_orientation(pars->map.card, cub);
+	cub->texture.no_img.path = pars->data.t.path_no;
+	cub->texture.so_img.path = pars->data.t.path_so;
+	cub->texture.we_img.path = pars->data.t.path_we;
+	cub->texture.ea_img.path = pars->data.t.path_ea;
+	cub->texture.s_img.path = pars->data.t.path_s;
+
 	cub->save = pars->save;
 }
 

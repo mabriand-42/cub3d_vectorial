@@ -21,22 +21,18 @@
 ** Retourne la taille calculée.
 */
 
-double	ft_get_slice(t_cub *cub)
+void	ft_get_slice(t_cub *cub)
 {
-	double	slice;
-
-	slice = 0;
 	if (cub->cast.wall == north || cub->cast.wall == south)
 	{
-		slice = (cub->cast.map.y - cub->player.pos.y +
+		cub->cast.slice = (cub->cast.map.y - cub->player.pos.y +
 				(1 - cub->cast.step.y) / 2) / cub->cast.ray_dir.y;
 	}
 	else
 	{
-		slice = (cub->cast.map.x - cub->player.pos.x +
+		cub->cast.slice = (cub->cast.map.x - cub->player.pos.x +
 				(1 - cub->cast.step.x) / 2) / cub->cast.ray_dir.x;
 	}
-	return (slice);
 }
 
 /*
@@ -49,22 +45,16 @@ double	ft_get_slice(t_cub *cub)
 ** =========
 */
 
-void	ft_draw_wall(t_cub *cub)
+void	ft_get_wall(t_cub *cub)
 {
-	double	height;
-	double	slice;
-	int		line_height;
-
-	height = (double)cub->img.r.y;
-	slice = ft_get_slice(cub);
-	line_height = (int)(height / slice);
-
-	cub->draw.wall.x = -line_height / 2 + height / 2;
+	ft_get_slice(cub);
+	cub->cast.line_height = (int)(cub->img.r.y / cub->cast.slice);
+	cub->draw.wall.x = -cub->cast.line_height / 2 + cub->img.r.y / 2;
 	if (cub->draw.wall.x < 0)
 		cub->draw.wall.x = 0;
-	cub->draw.wall.y = line_height / 2 + height / 2;
-	if (cub->draw.wall.y >= height)
-		cub->draw.wall.y = height - 1;
+	cub->draw.wall.y = cub->cast.line_height / 2 + cub->img.r.y / 2;
+	if (cub->draw.wall.y >= cub->img.r.y)
+		cub->draw.wall.y = cub->img.r.y - 1;
 }
 
 /*
@@ -104,14 +94,41 @@ void	ft_draw(t_cub *cub, int i)
 
 
 
+/*
+** Coms
+*/
+
+/*void	ft_draw(t_cub *cub, int i)
+{
+	t_image *texture;
+	int j;
+
+	texture = ft_choose_text(cub);
+	j = 0;
+	while (j < cub->draw.wall.x)
+	{
+		my_mlx_pixel_put(&cub->img, i, j, cub->draw.c_rgb);
+		j++;
+	}
+	ft_mapping(cub, *texture, &i, &j);
+	while (j >= cub->draw.wall.y && j < cub->img.r.y)
+	{
+		my_mlx_pixel_put(&cub->img, i, j, cub->draw.f_rgb);
+		j++;
+	}
+}*/
 
 
 
+/*
+** Coms
+*/
 
-/*void		my_mlx_pixel_put(t_image *img, int x, int y, int color)
+
+void		my_mlx_pixel_put(t_image *image, int x, int y, int color)
 {
 	char	*dst;
-
-	dst = img->adr + (y * img->line_length + x * (img->bits_per_pixel / 8));
+	
+	dst = image->addr + (y * image->size_line + x * (image->bpp / 8));
 	*(int*)dst = color;
-}*/
+}

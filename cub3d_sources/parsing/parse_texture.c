@@ -33,6 +33,7 @@ int	ft_path(char *line, size_t *pos, char **path)
 	{
 		ft_reinit_buffer(*pos, line);
 		*path = strdup(line);
+		printf("line is : %s\n", line);
 		return (1);
 	}
 	return (0);
