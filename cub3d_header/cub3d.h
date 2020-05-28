@@ -143,8 +143,9 @@ int		ft_iswalkable(char c);
 
 t_image	*ft_choose_text(t_cub *cub);
 void		my_mlx_pixel_put(t_image *image, int x, int y, int color);
-void	ft_mapping(t_cub *cub, t_image texture, int  *i, int *j);
+void	ft_mapping(t_cub *cub, t_image texture, int  i, int *j);
 void	ft_init_image(t_cub *cub);
+void	ft_generate_texture(t_cub *cub);
 /*
 ** -------------------------------------------------------------------PROGRAM---
 */

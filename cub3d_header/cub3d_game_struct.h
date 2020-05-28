@@ -70,7 +70,6 @@ typedef struct	s_cast
 	double	slice;
 	double	in_w;
 	t_box	in_t;
-
 }				t_cast;
 
 typedef	struct	s_texture

@@ -75,5 +75,6 @@ int		ft_raycast(t_cub *cub)
 		ft_draw(cub, x);
 		x++;
 	}
+	mlx_put_image_to_window(cub->mlx_ptr, cub->win.win_ptr, cub->img.img_ptr, 0, 0);
 	return (1);
 }

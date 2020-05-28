@@ -24,6 +24,8 @@ int	ft_start(t_cub *cub)
 	if ((cub->win.win_ptr = mlx_new_window(cub->mlx_ptr,
 		cub->win.r.x, cub->win.r.y, "test")) == NULL)
 		return (0);
+	ft_init_image(cub);
+	ft_generate_texture(cub);
 	int ret_ray = ft_raycast(cub);
     if (ret_ray == 0)
     {

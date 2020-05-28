@@ -63,66 +63,23 @@ void	ft_get_wall(t_cub *cub)
 
 void	ft_draw(t_cub *cub, int i)
 {
-	//t_image *texture;
-	int couleur_mur;
+	t_image *texture;
 	int j;
-	ft_init_image(cub);
-	//texture = ft_choose_text(cub);
-	//printf("texture choisie : %s\n", texture->path);
-	if (cub->cast.wall == north)
-		couleur_mur = ft_create_rgb(103,231,69);
-	else if (cub->cast.wall == south)
-		couleur_mur = ft_create_rgb(231,69,69);
-	else if (cub->cast.wall == west)
-		couleur_mur = ft_create_rgb(175,69,231);
-	else if (cub->cast.wall == east)
-		couleur_mur = ft_create_rgb(231,216,69);
 
+	texture = ft_choose_text(cub);
 	j = 0;
 	while (j < cub->draw.wall.x)
 	{
 		my_mlx_pixel_put(&cub->img, i, j, cub->draw.c_rgb);
 		j++;
 	}
-	while (j >= cub->draw.wall.x && j < cub->draw.wall.y)
-	{
-		my_mlx_pixel_put(&cub->img, i, j, couleur_mur);
-		j++;
-	}
+	ft_mapping(cub, *texture, i, &j);
 	while (j >= cub->draw.wall.y && j < cub->img.r.y)
 	{
 		my_mlx_pixel_put(&cub->img, i, j, cub->draw.f_rgb);
 		j++;
 	}
 }
-
-
-
-/*
-** Coms
-*/
-
-/*void	ft_draw(t_cub *cub, int i)
-{
-	t_image *texture;
-	int j;
-
-	texture = ft_choose_text(cub);
-	printf("texture choisie : %s\n", texture->path);
-	j = 0;
-	while (j < cub->draw.wall.x)
-	{
-		my_mlx_pixel_put(&cub->img, i, j, cub->draw.c_rgb);
-		j++;
-	}
-	printf("first color is ok\n");
-	ft_mapping(cub, *texture, &i, &j);
-	while (j >= cub->draw.wall.y && j < cub->img.r.y)
-	{
-		my_mlx_pixel_put(&cub->img, i, j, cub->draw.f_rgb);
-		j++;
-	}
-}*/
 
 
 /*
