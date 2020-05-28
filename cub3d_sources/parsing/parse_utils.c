@@ -23,7 +23,7 @@
 
 void	ft_skip_spaces(char *str, size_t *pos)
 {
-	while (str[*pos] == ' ')
+	while (str[*pos] == ' ' || str[*pos] == '\t')
 		(*pos)++;
 }
 

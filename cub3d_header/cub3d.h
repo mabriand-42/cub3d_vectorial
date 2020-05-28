@@ -66,7 +66,7 @@ int		ft_cf(char *line, size_t *pos, t_color *color, t_bool *check);
 /*
 ** Texture
 */
-int		ft_path(char *line, size_t *pos, char **path);
+int		ft_path(char *line, size_t *pos, size_t save_pos, char **path);
 int		ft_text(char *line, size_t *pos, char **path, t_bool *check);
 /*
 ** Map
@@ -144,7 +144,7 @@ int		ft_iswalkable(char c);
 t_image	*ft_choose_text(t_cub *cub);
 void		my_mlx_pixel_put(t_image *image, int x, int y, int color);
 void	ft_mapping(t_cub *cub, t_image texture, int  *i, int *j);
-
+void	ft_init_image(t_cub *cub);
 /*
 ** -------------------------------------------------------------------PROGRAM---
 */

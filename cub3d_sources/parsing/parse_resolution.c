@@ -28,7 +28,7 @@ size_t	ft_axis(char *line, size_t *pos)
 	size_t axis;
 
 	axis = 0;
-	if (ft_isspace(line[*pos]) == 1)
+	if (ft_isspace(line[*pos]) == 1 || line[*pos] == '\t')
 		ft_skip_spaces(line, pos);
 	else
 		return (0);
@@ -64,7 +64,14 @@ int		ft_xy(char *line, size_t *pos, t_reso *r)
 	if ((r->x = ft_axis(line, pos)) != 0)
 	{
 		if ((r->y = ft_axis(line, pos)) != 0)
-			ret = 1;
+		{
+			if (ft_isspace(line[*pos]) == 1 || line[*pos] == '\t')
+					ft_skip_spaces(line, pos);
+			if (line[*pos] == '\0')
+				ret = 1;
+			else
+				ret = 0;
+		}
 	}
 	return (ret);
 }

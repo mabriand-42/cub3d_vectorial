@@ -10,6 +10,7 @@ int     main(int argc, char **argv)
         printf("ERROR : inputs!\n\n");
         return(0);
     }
+	printf("NO: %s\nSO: %s\nWE: %s\nEA: %s\nS: %s\n", pars.data.t.path_no, pars.data.t.path_so, pars.data.t.path_we, pars.data.t.path_ea, pars.data.t.path_s);
 	int	ret_player = ft_get_player_data(&cub);
 	if (ret_player == 0)
 	{

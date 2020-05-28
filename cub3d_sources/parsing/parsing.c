@@ -104,15 +104,15 @@ int		ft_orient_gnl(int ret_gnl, t_map *m, t_data *c, t_duo duo)
 	i = 0;
 	if (ret_gnl == 0)
 	{
-		printf("hey\n");
 		if (ft_closed_map(str, &i) == 0 || ((ft_closed_map(str, &i) == 1)
 		&& (ft_lines(str, duo.prev, m, c) == 0)))
+		{
 			return (0);
+		}
 		m->two_d = ft_split(m->map, '-');
 	}
 	else
 	{
-		printf("coucou\n");
 		if (ret_ep == 1)
 			free(duo.prev);
 		else if ((ret_ep == 0) || ((ret_ep == -1)
@@ -150,11 +150,9 @@ int		ft_parse_fd(char *fd_path, t_pars *ptr)
 	{
 		ret_gnl = gnl(fd, &duo.line);
 		if (ft_orient_gnl(ret_gnl, &(ptr->map), &(ptr->data), duo) == 0)
-		{
-			printf("yo\n");
 			return (0);
-		}
-		duo.prev = ft_strdup(duo.line);
+		if (ret_gnl != 0)
+			duo.prev = ft_strdup(duo.line);
 		free(duo.line);
 	}
 	if (&(ptr->map.card) == not_given)

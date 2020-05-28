@@ -63,7 +63,7 @@ int	ft_rgb(char *line, size_t *pos, t_color *c)
 	int		ret;
 
 	ret = 0;
-	if (ft_isspace(line[*pos]) == 1)
+	if (ft_isspace(line[*pos]) == 1 || line[*pos] == '\t')
 		ft_skip_spaces(line, pos);
 	else
 		return (ret);
@@ -72,7 +72,14 @@ int	ft_rgb(char *line, size_t *pos, t_color *c)
 		if ((line[(*pos)++] == ',') && (c->g = ft_color(line, pos)) != -1)
 		{
 			if ((line[(*pos)++] == ',') && (c->b = ft_color(line, pos)) != -1)
-				ret = 1;
+			{
+				if (ft_isspace(line[*pos]) == 1 || line[*pos] == '\t')
+					ft_skip_spaces(line, pos);
+				if (line[*pos] == '\0')
+					ret = 1;
+				else
+					ret = 0;
+			}
 		}
 	}
 	return (ret);

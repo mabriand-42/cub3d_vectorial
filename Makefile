@@ -70,3 +70,4 @@ fclean: clean
 re: fclean all
 
 .PHONY:	all clean fclean re
+.SILENT: #pour pas que ca affiche tout ce qu'il fait
