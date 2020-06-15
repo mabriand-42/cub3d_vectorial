@@ -51,15 +51,15 @@ void	ft_mapping(t_cub *cub, t_image texture, int  i, int *j)
 	int		pos;
 	ft_pos_in_wall(cub);
 	ft_pos_in_text(cub, texture);
-	step = 1.0 * texture.r.y / cub->cast.line_height;
+	step = /*1.0 **/ texture.r.y / cub->cast.line_height;
 	text = (cub->draw.wall.x - cub->img.r.y / 2 + cub->cast.line_height / 2) * step;
 	while (*j >= cub->draw.wall.x && *j < cub->draw.wall.y)
 	{
 		cub->cast.in_t.y = (int)text & (texture.r.y - 1);
-		text += step;
 		pos = texture.r.y * cub->cast.in_t.y + cub->cast.in_t.x;
 		color = mlx_get_color_value(cub->mlx_ptr, texture.i_addr[pos]);
 		my_mlx_pixel_put(&cub->img, i, *j, color);
+		text += step;
 		(*j)++;
 	}
 }

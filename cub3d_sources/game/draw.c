@@ -16,12 +16,12 @@
 ** Calcule la taille de la partie de la ligne
 ** de pixels correspondant au mur.
 ** =========
-** #1 : un pointeur sur un t_cub.
+** #1 : un pointeur sur une t_cub.
 ** =========
 ** Retourne la taille calculée.
 */
 
-void	ft_get_slice(t_cub *cub)
+void	ft_get_slice(t_cub *cub, double *dst, int index)
 {
 	if (cub->cast.wall == north || cub->cast.wall == south)
 	{
@@ -33,21 +33,22 @@ void	ft_get_slice(t_cub *cub)
 		cub->cast.slice = (cub->cast.map.x - cub->player.pos.x +
 				(1 - cub->cast.step.x) / 2) / cub->cast.ray_dir.x;
 	}
+	dst[index] = cub->cast.slice;
 }
 
 /*
 ** Calcule la position du pixel de départ
 ** du mur et celle du pixel de fin sur la
 ** colomne j et rentre ces infos dans les
-** champs de cub correspondants.
+** champs de la structure t_cub correspondants.
 ** =========
-** #1 : un pointeur sur un t_cub.
+** #1 : un pointeur sur une t_cub.
 ** =========
 */
 
-void	ft_get_wall(t_cub *cub)
+void	ft_get_wall(t_cub *cub, double *dst, int index)
 {
-	ft_get_slice(cub);
+	ft_get_slice(cub, dst, index);
 	cub->cast.line_height = (int)(cub->img.r.y / cub->cast.slice);
 	cub->draw.wall.x = -cub->cast.line_height / 2 + cub->img.r.y / 2;
 	if (cub->draw.wall.x < 0)
@@ -86,11 +87,20 @@ void	ft_draw(t_cub *cub, int i)
 ** Coms
 */
 
-
 void		my_mlx_pixel_put(t_image *image, int x, int y, int color)
 {
 	char	*dst;
 	
 	dst = image->addr + (y * image->size_line + x * (image->bpp / 8));
 	*(int*)dst = color;
+}
+
+/*
+** Coms
+*/
+
+void	ft_print_s_color(t_cub *cub, int x, int y)
+{
+	if ((cub->sprite.color & 0x00FFFFFF) != 0)
+		my_mlx_pixel_put(&cub->img, x, y, cub->sprite.color);
 }

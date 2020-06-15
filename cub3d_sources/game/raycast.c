@@ -59,8 +59,9 @@ void	ft_wall_search(t_cub *cub)
 
 int		ft_raycast(t_cub *cub)
 {
-	int x;
-	int width;
+	int		x;
+	int		width;
+	double	buffer[cub->img.r.x];
 
 	x = 0;
 	width = cub->img.r.x;
@@ -71,10 +72,12 @@ int		ft_raycast(t_cub *cub)
 		ft_init_camera(cub, x, width);
 		ft_get_sides(cub);
 		ft_wall_search(cub);
-		ft_get_wall(cub);
+		ft_get_wall(cub, buffer, x);
 		ft_draw(cub, x);
 		x++;
 	}
+	ft_gather_sprite(cub);
+	ft_print_sprite(cub, buffer);
 	mlx_put_image_to_window(cub->mlx_ptr, cub->win.win_ptr, cub->img.img_ptr, 0, 0);
 	return (1);
 }

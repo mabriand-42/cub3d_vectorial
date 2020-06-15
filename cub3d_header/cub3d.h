@@ -120,8 +120,8 @@ void	ft_get_sides(t_cub *cub);
 */
 void	ft_init_draw(t_draw *draw);
 void	ft_draw(t_cub *cub, int i);
-void	ft_get_wall(t_cub *cub);
-void	ft_get_slice(t_cub *cub);
+void	ft_get_wall(t_cub *cub, double *dst, int index);
+void	ft_get_slice(t_cub *cub, double *dst, int index);
 void	ft_we_wall(t_cub *cub);
 void	ft_ns_wall(t_cub *cub);
 /*
@@ -142,10 +142,30 @@ int		ft_iswalkable(char c);
 
 
 t_image	*ft_choose_text(t_cub *cub);
-void		my_mlx_pixel_put(t_image *image, int x, int y, int color);
+void	my_mlx_pixel_put(t_image *image, int x, int y, int color);
 void	ft_mapping(t_cub *cub, t_image texture, int  i, int *j);
 void	ft_init_image(t_cub *cub);
 void	ft_generate_texture(t_cub *cub);
+
+
+
+
+
+
+
+void	ft_sort_sprite(t_cub *cub);
+void	ft_sprite_dist(t_cub *cub);
+void	ft_sprite_stock(int nbr, char **map, t_cub *cub);
+size_t	ft_sprite_count(char **map);
+double	ft_hypothenuse(int side1, int side2);
+void	ft_gather_sprite(t_cub *cub);
+void	ft_transform_sprite(t_cub *cub, int i);
+void	ft_get_sprite(t_cub *cub, double *dst);
+void	ft_loop(t_cub *cub, t_box sprite, double *dst);
+void	ft_find_s_color(t_cub *cub, double *dst, t_box sprite, int d, t_box size);
+void	ft_print_sprite(t_cub *cub, double *dst);
+void	ft_print_s_color(t_cub *cub, int x, int y);
+
 /*
 ** -------------------------------------------------------------------PROGRAM---
 */

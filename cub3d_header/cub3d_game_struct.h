@@ -89,7 +89,20 @@ typedef struct	s_draw
 	t_box	ceiling;
 	t_box	wall;
 	t_box	floor;
+	t_box	sprite_h;
+	t_box	sprite_w;
 }				t_draw;
+
+typedef struct	s_sprite
+{
+	size_t	count;
+	t_box	*coor;
+	double	*dist;
+	size_t	*rank;
+	t_vect	trans;
+	int		color;
+	int		s_cam;
+}				t_sprite;
 
 
 typedef struct	s_cub
@@ -108,6 +121,8 @@ typedef struct	s_cub
 	t_draw		draw;
 
 	t_texture	texture;
+
+	t_sprite	sprite;
 }				t_cub;
 
 

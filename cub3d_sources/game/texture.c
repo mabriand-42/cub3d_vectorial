@@ -38,8 +38,8 @@ void	ft_generate_texture(t_cub *cub)
 		ft_close_pgm(cub);
 	if (ft_get_img_data(&cub->texture.ea_img, cub->mlx_ptr) == 0)
 		ft_close_pgm(cub);
-	/*if (ft_get_img_data(&cub->texture.s_img, cub->mlx_ptr) == 0)
-		ft_close_pgm(cub);*/
+	if (ft_get_img_data(&cub->texture.s_img, cub->mlx_ptr) == 0)
+		ft_close_pgm(cub);
 }
 
 void	ft_init_image(t_cub *cub)

@@ -17,12 +17,15 @@ int     main(int argc, char **argv)
         printf("ERROR : player!\n\n");
         return(0);
     }
+	ft_gather_sprite(&cub);
+	printf("nbr sprite : %zu\n", cub.sprite.count);
 	int ret_start = ft_start(&cub);
     if (ret_start == 0)
     {
         printf("ERROR : start!\n\n");
         return (0);
     }
+
     system("leaks a.out");
     return(0);
 }

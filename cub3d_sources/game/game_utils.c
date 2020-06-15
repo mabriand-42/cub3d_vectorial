@@ -43,3 +43,16 @@ int		ft_iswalkable(char c)
 		return (1);
 	return (0);
 }
+
+/*
+** Coms
+*/
+
+double	ft_hypothenuse(int side1, int side2)
+{
+	double	side3;
+
+	side3 = (side1 * side1) + (side2 * side2);
+	side3 = sqrt(side3);
+	return (side3);
+}
