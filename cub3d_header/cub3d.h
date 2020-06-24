@@ -127,7 +127,7 @@ void	ft_ns_wall(t_cub *cub);
 /*
 ** Hook
 */
-void	ft_close_pgm(t_cub *cub);
+void	ft_close_pgm(t_cub *cub); //
 int		ft_press_mana(int keycode, t_cub *cub);
 void	ft_move_wa(int keycode, t_cub *cub);
 void	ft_move_sd(int keycode, t_cub *cub);
@@ -165,6 +165,17 @@ void	ft_loop(t_cub *cub, t_box sprite, double *dst);
 void	ft_find_s_color(t_cub *cub, double *dst, t_box sprite, int d, t_box size);
 void	ft_print_sprite(t_cub *cub, double *dst);
 void	ft_print_s_color(t_cub *cub, int x, int y);
+
+
+
+
+
+
+
+
+
+
+void		ft_save(t_cub *cub);
 
 /*
 ** -------------------------------------------------------------------PROGRAM---

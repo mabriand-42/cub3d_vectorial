@@ -102,6 +102,9 @@ int		ft_orient_gnl(int ret_gnl, t_map *m, t_data *c, t_duo duo)
 	str = ft_strdup(duo.line);
 	ret_ep = ft_elem_parsing(str, c);
 	i = 0;
+	
+	printf("line = %s - prev = %s\n", duo.line, duo.prev);
+
 	if (ret_gnl == 0)
 	{
 		if (ft_closed_map(str, &i) == 0 || ((ft_closed_map(str, &i) == 1)
@@ -156,8 +159,6 @@ int		ft_parse_fd(char *fd_path, t_pars *ptr)
 		free(duo.line);
 	}
 	if (&(ptr->map.card) == not_given)
-	{
 		return (0);
-	}
 	return (1);
 }
