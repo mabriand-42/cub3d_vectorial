@@ -14,11 +14,12 @@
 # define CUB3D_H
 
 # include <math.h>
-# include <mlx.h>
 # include "../libft/libft_header/libft.h"
 # include "cub3d_parse_struct.h"
 # include "cub3d_game_struct.h"
 # include "cub3d_macro.h"
+# include "../minilibx-linux/mlx.h"
+# include "../minilibx-linux/mlx_int.h"
 
 
 /*
@@ -127,7 +128,7 @@ void	ft_ns_wall(t_cub *cub);
 /*
 ** Hook
 */
-void	ft_close_pgm(t_cub *cub); //
+int	ft_close_pgm(t_cub *cub); //
 int		ft_press_mana(int keycode, t_cub *cub);
 void	ft_move_wa(int keycode, t_cub *cub);
 void	ft_move_sd(int keycode, t_cub *cub);

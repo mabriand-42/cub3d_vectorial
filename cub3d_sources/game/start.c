@@ -16,14 +16,35 @@
 ** Coms
 */
 
-int	ft_start(t_cub *cub)
+void	ft_check_screen(t_cub *cub)
+{
+	int width;
+	int height;
+	mlx_get_screen_size(cub->mlx_ptr, &width, &height);
+	if (cub->win.r.x > width)
+	{
+		cub->win.r.x = width;
+		cub->img.r.x = width;
+	}
+	if (cub->win.r.y > height)
+	{
+		cub->win.r.y = height;
+		cub->img.r.y = height;
+	}
+}
+
+/*
+** Coms
+*/
+
+int		ft_start(t_cub *cub)
 {
 	int ret_ray;
 
 	cub->done = yes;
 	if ((cub->mlx_ptr = mlx_init()) == NULL)
 		return (0);
-
+	ft_check_screen(cub);
 	if (cub->save == no)
 	{
 		if ((cub->win.win_ptr = mlx_new_window(cub->mlx_ptr,

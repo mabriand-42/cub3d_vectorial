@@ -16,11 +16,12 @@
 ** Comms
 */
 
-void	ft_close_pgm(t_cub *cub)
+int		ft_close_pgm(t_cub *cub)
 {
 	mlx_clear_window(cub->mlx_ptr, cub->win.win_ptr);
 	mlx_destroy_window(cub->mlx_ptr, cub->win.win_ptr);
 	exit(EXIT_SUCCESS);
+	return (0);
 }
 
 /*
@@ -30,7 +31,7 @@ void	ft_close_pgm(t_cub *cub)
 int		ft_press_mana(int keycode, t_cub *cub)
 {
 	if (keycode == K_ESC)
-		ft_close_pgm(cub);
+		return(ft_close_pgm(cub));
 	if (keycode == K_W || keycode == K_A)
 		ft_move_wa(keycode, cub);
 	if (keycode == K_S || keycode == K_D)
@@ -49,4 +50,5 @@ int		ft_press_mana(int keycode, t_cub *cub)
 void	ft_event(t_cub *cub)
 {
 	mlx_hook(cub->win.win_ptr, 2, 1L << 0, ft_press_mana, cub);
+	mlx_hook(cub->win.win_ptr, 17, 1L << 17, ft_close_pgm, cub);
 }
