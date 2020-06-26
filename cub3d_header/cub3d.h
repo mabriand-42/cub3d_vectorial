@@ -169,7 +169,7 @@ void	ft_print_s_color(t_cub *cub, int x, int y);
 
 
 
-
+int		ft_is_empty_string(char *str);
 
 
 

@@ -102,25 +102,47 @@ int		ft_orient_gnl(int ret_gnl, t_map *m, t_data *c, t_duo duo)
 	str = ft_strdup(duo.line);
 	ret_ep = ft_elem_parsing(str, c);
 	i = 0;
-	
-	printf("line = %s - prev = %s\n", duo.line, duo.prev);
-
+	printf("\n\nret_ep : %d\n", ret_ep);
+	printf("line : %s - prev : %s\n", duo.line, duo.prev);
 	if (ret_gnl == 0)
 	{
-		if (ft_closed_map(str, &i) == 0 || ((ft_closed_map(str, &i) == 1)
-		&& (ft_lines(str, duo.prev, m, c) == 0)))
+		if (m->end == no && ft_closed_map(str, &i) == 1)
 		{
-			return (0);
+			m->end = yes;
+			m->two_d = ft_split(m->map, '-');
 		}
-		m->two_d = ft_split(m->map, '-');
+		else if (m->end == yes && ft_is_empty_string(str) == 1)
+			m->two_d = ft_split(m->map, '-');
+		else
+			return (0);
 	}
 	else
 	{
 		if (ret_ep == 1)
+		{
+			printf("WTF");
 			free(duo.prev);
-		else if ((ret_ep == 0) || ((ret_ep == -1)
-		&& (ft_lines(str, duo.prev, m, c) == 0)))
+		}
+		else if (ret_ep == 0)
+		{
+			printf("A\n");
 			return (0);
+		}
+		else if (ret_ep == -1 && ft_lines(str, duo.prev, m, c) == 0)
+		{
+			printf("B\n");
+			return (0);
+		}
+		else if (ret_ep == 1 && m->end == yes && ft_lines(str, duo.prev, m, c) == 0)
+		{
+			printf("C\n");
+			return (0);
+		}
+		else
+		{
+			printf("NONE\n");
+			//return (0);
+		}	
 	}
 	free(str);
 	return (1);
@@ -156,9 +178,12 @@ int		ft_parse_fd(char *fd_path, t_pars *ptr)
 			return (0);
 		if (ret_gnl != 0)
 			duo.prev = ft_strdup(duo.line);
+		//if (ptr->map.pb == yes)
+		//	return (0);
 		free(duo.line);
 	}
-	if (&(ptr->map.card) == not_given)
+	printf("MAP = %s\n", ptr->map.map);
+	if (&(ptr->map.card) == not_given || ptr->map.end == no)
 		return (0);
 	return (1);
 }

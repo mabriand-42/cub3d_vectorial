@@ -79,6 +79,9 @@ void	ft_init_map(t_map *m)
 	m->map = NULL;
 	m->two_d = NULL;
 	m->first = no;
+	m->last = no;
+	m->end = no;
+	m->pb = no;
 	m->card = not_given;
 }
 

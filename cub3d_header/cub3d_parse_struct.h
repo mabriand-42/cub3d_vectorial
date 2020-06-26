@@ -81,7 +81,11 @@ typedef struct	s_map
 	char	*map;
 	char 	**two_d;
 	t_bool	first;
+	t_bool	last;
+	t_bool	end;
+	t_bool	pb;
 	t_card	card;
+
 }				t_map;
 
 typedef struct  s_pars

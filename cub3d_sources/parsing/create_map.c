@@ -54,6 +54,20 @@ void	ft_create_map(t_map *map, char *next, int *ret)
 ** Retourne 1 si tout est OK, 0 sinon.
 */
 
+int		ft_is_empty_string(char *str)
+{
+	size_t i;
+
+	i = 0;
+	if (str[0] == '\n')
+		return (1);
+	ft_skip_spaces(str, &i);
+	if (str[i] == '\0')
+		return (1);
+	else
+		return (0);
+}
+
 int		ft_lines(char *line, char *prev, t_map *map, t_data *data)
 {
 	int			ret;
@@ -61,6 +75,7 @@ int		ft_lines(char *line, char *prev, t_map *map, t_data *data)
 
 	ret = 0;
 	i = 0;
+	printf("first: %d - last: %d - end: %d\n", map->first, map->last, map->end);
 	if (map->first == no && (ft_check_config(data->check) == 1))
 	{
 		if (ft_closed_map(line, &i) == 1)
@@ -68,8 +83,43 @@ int		ft_lines(char *line, char *prev, t_map *map, t_data *data)
 	}
 	else if (map->first == yes && (ft_check_config(data->check) == 1))
 	{
-		if (ft_duo_line(line, prev, map) == 1)
-			ft_create_map(map, line, &ret);
+		if (map->last == no)
+		{
+			if (ft_closed_map(line, &i) == 1)
+			{	
+				map->last = yes;
+				if (ft_duo_line(line, prev, map) == 1)
+					ft_create_map(map, line, &ret);
+			}
+			else if (ft_duo_line(line, prev, map) == 1)
+					ft_create_map(map, line, &ret);
+		}
+		else if (map->last == yes && map->end == no) 
+		{
+			if (ft_is_empty_string(line) == 1)
+			{
+				map->end = yes;
+				ft_create_map(map, line, &ret);
+			}
+			else if (ft_closed_map(line, &i) == 0)
+			{
+				map->last = no;
+				if (ft_duo_line(line, prev, map) == 1)
+					ft_create_map(map, line, &ret);
+			}
+			else if (ft_closed_map(line, &i) == 1)
+			{
+				if (ft_duo_line(line, prev, map) == 1)
+					ft_create_map(map, line, &ret);
+			}
+		}
+		else if (map->last == yes && map->end == yes)
+		{
+			if (ft_is_empty_string(line) == 1)
+				ft_create_map(map, line, &ret);
+			else
+				map->pb = yes;
+		}
 	}
 	free(prev);
 	return (ret);
