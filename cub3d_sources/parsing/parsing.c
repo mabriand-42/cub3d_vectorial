@@ -108,22 +108,33 @@ int		ft_orient_gnl(int ret_gnl, t_map *m, t_data *c, t_duo duo)
 	{
 		if (m->end == no && ft_closed_map(str, &i) == 1)
 		{
+			printf("-----------> here\n");
 			m->end = yes;
 			m->two_d = ft_split(m->map, '-');
 		}
 		else if (m->end == yes && ft_is_empty_string(str) == 1)
+		{
+			printf("-----------> HERE\n");
 			m->two_d = ft_split(m->map, '-');
+		}
 		else
+		{
+			i = 0;
+			printf("end ? %d\n", m->end);
+			printf("str closed ? %d\n", ft_closed_map(str, &i));
+			printf("str empty ? %d\n", ft_is_empty_string(str));
 			return (0);
+		}
 	}
 	else
 	{
-		if (ret_ep == 1)
+		/*if (ret_ep == 1)
 		{
-			printf("WTF");
+			printf("WTF\n");
+			printf("end ? %d\n", m->end);
 			free(duo.prev);
-		}
-		else if (ret_ep == 0)
+		}*/
+		if (ret_ep == 0)
 		{
 			printf("A\n");
 			return (0);
@@ -136,6 +147,11 @@ int		ft_orient_gnl(int ret_gnl, t_map *m, t_data *c, t_duo duo)
 		else if (ret_ep == 1 && m->end == yes && ft_lines(str, duo.prev, m, c) == 0)
 		{
 			printf("C\n");
+			return (0);
+		}
+		else if (ret_ep == 1 && m->first == yes && m->end == no && ft_lines(str, duo.prev, m, c) == 0)
+		{
+			printf("D\n");
 			return (0);
 		}
 		else
