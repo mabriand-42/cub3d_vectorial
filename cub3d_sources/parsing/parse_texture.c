@@ -12,7 +12,6 @@
 
 #include "../../cub3d_header/cub3d.h"
 
-////////////////////////////a actualiser
 /*
 ** Récupère une partie d'une chaîne de caractères
 ** correspondant à un path vers une texture.
@@ -20,7 +19,8 @@
 ** #1 : une chaîne de caractères
 **		(correspond à la ligne lue par GNL).
 ** #2 : un pointeur sur une position dans cette chaîne.
-** #3 : l'adresse d'une chaîne de caractères
+** #3 : une position dans cette chaîne.
+** #4 : l'adresse d'une chaîne de caractères
 **		(correspondant un path contenu dans
 **		une t_configuration et initialisé à NULL
 **		en début de parsing).
@@ -31,11 +31,12 @@
 int	ft_path(char *line, size_t *pos, size_t save_pos, char **path)
 {
 	size_t	path_size;
-	
+
 	path_size = 0;
 	if (ft_isspace(line[*pos]) == 0 && line[*pos] != '\t' && line[*pos] != '\0')
 	{
-		while (ft_isspace(line[*pos]) == 0 && line[*pos] != '\t' && line[*pos] != '\0')
+		while (ft_isspace(line[*pos]) == 0 && line[*pos] != '\t'
+											&& line[*pos] != '\0')
 		{
 			(*pos)++;
 			path_size++;
@@ -54,8 +55,6 @@ int	ft_path(char *line, size_t *pos, size_t save_pos, char **path)
 	return (0);
 }
 
-
-////////////////////////////a actualiser
 /*
 ** Récupère le path vers une texture, vérifie
 ** la validité du check correspondant et actualise

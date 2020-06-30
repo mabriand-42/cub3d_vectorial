@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_game_struct.h                               :+:      :+:    :+:   */
+/*   cub3d_game_struct.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mabriand <mabriand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -22,11 +22,10 @@ typedef	struct	s_window
 
 }				t_window;
 
-
 typedef	struct	s_image
 {
 	void	*img_ptr;
-	void 	*addr;
+	void	*addr;
 	int		*i_addr;
 	int		bpp;
 	int		size_line;
@@ -34,7 +33,6 @@ typedef	struct	s_image
 	t_reso	r;
 	char	*path;
 }				t_image;
-
 
 typedef	struct	s_vect
 {
@@ -56,11 +54,10 @@ typedef struct	s_player
 	t_box	box;
 }				t_player;
 
-
 typedef struct	s_cast
 {
 	double	cam;
-	t_vect 	ray_dir;
+	t_vect	ray_dir;
 	t_vect	side_dist;
 	t_vect	delta_dist;
 	t_box	step;
@@ -89,8 +86,8 @@ typedef struct	s_draw
 	t_box	ceiling;
 	t_box	wall;
 	t_box	floor;
-	t_box	sprite_h;
-	t_box	sprite_w;
+	t_box	spr_h;
+	t_box	spr_w;
 }				t_draw;
 
 typedef struct	s_sprite
@@ -104,27 +101,19 @@ typedef struct	s_sprite
 	int		s_cam;
 }				t_sprite;
 
-
 typedef struct	s_cub
 {
 	void		*mlx_ptr;
 	t_window	win;
 	t_image		img;
-
-	t_bool		save; // pas sur qu'on en ai vraiment besoin
+	t_bool		save;
 	t_bool		done;
-
 	char		**box_map;
-
 	t_player	player;
 	t_cast		cast;
 	t_draw		draw;
-
-	t_texture	texture;
-
-	t_sprite	sprite;
+	t_texture	text;
+	t_sprite	spr;
 }				t_cub;
-
-
 
 #endif

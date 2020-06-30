@@ -64,33 +64,32 @@ void	ft_get_wall(t_cub *cub, double *dst, int index)
 
 void	ft_draw(t_cub *cub, int i)
 {
-	t_image *texture;
-	int j;
+	t_image	*texture;
+	int		j;
 
 	texture = ft_choose_text(cub);
 	j = 0;
 	while (j < cub->draw.wall.x)
 	{
-		my_mlx_pixel_put(&cub->img, i, j, cub->draw.c_rgb);
+		ft_my_mlx_pixel_put(&cub->img, i, j, cub->draw.c_rgb);
 		j++;
 	}
 	ft_mapping(cub, *texture, i, &j);
 	while (j >= cub->draw.wall.y && j < cub->img.r.y)
 	{
-		my_mlx_pixel_put(&cub->img, i, j, cub->draw.f_rgb);
+		ft_my_mlx_pixel_put(&cub->img, i, j, cub->draw.f_rgb);
 		j++;
 	}
 }
-
 
 /*
 ** Coms
 */
 
-void		my_mlx_pixel_put(t_image *image, int x, int y, int color)
+void	ft_my_mlx_pixel_put(t_image *image, int x, int y, int color)
 {
 	char	*dst;
-	
+
 	dst = image->addr + (y * image->size_line + x * (image->bpp / 8));
 	*(int*)dst = color;
 }
@@ -101,6 +100,6 @@ void		my_mlx_pixel_put(t_image *image, int x, int y, int color)
 
 void	ft_print_s_color(t_cub *cub, int x, int y)
 {
-	if ((cub->sprite.color & 0x00FFFFFF) != 0)
-		my_mlx_pixel_put(&cub->img, x, y, cub->sprite.color);
+	if ((cub->spr.color & 0x00FFFFFF) != 0)
+		ft_my_mlx_pixel_put(&cub->img, x, y, cub->spr.color);
 }

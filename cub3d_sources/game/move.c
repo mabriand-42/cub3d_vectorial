@@ -13,7 +13,7 @@
 #include "../../cub3d_header/cub3d.h"
 
 /*
-** Comms
+** Coms
 */
 
 void	ft_move_wa(int keycode, t_cub *cub)

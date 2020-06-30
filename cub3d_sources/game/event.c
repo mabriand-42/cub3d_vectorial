@@ -13,7 +13,7 @@
 #include "../../cub3d_header/cub3d.h"
 
 /*
-** Comms
+** Coms
 */
 
 int		ft_close_pgm(t_cub *cub)
@@ -25,13 +25,13 @@ int		ft_close_pgm(t_cub *cub)
 }
 
 /*
-** Comms
+** Coms
 */
 
 int		ft_press_mana(int keycode, t_cub *cub)
 {
 	if (keycode == K_ESC)
-		return(ft_close_pgm(cub));
+		return (ft_close_pgm(cub));
 	if (keycode == K_W || keycode == K_A)
 		ft_move_wa(keycode, cub);
 	if (keycode == K_S || keycode == K_D)
@@ -39,12 +39,13 @@ int		ft_press_mana(int keycode, t_cub *cub)
 	if (keycode == K_AR_R || keycode == K_AR_L)
 		ft_rotate(keycode, cub);
 	ft_raycast(cub);
-	mlx_put_image_to_window(cub->mlx_ptr, cub->win.win_ptr, cub->img.img_ptr, 0, 0);
+	mlx_put_image_to_window(cub->mlx_ptr, cub->win.win_ptr,
+							cub->img.img_ptr, 0, 0);
 	return (0);
 }
 
 /*
-** Comms
+** Coms
 */
 
 void	ft_event(t_cub *cub)

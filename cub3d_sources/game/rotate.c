@@ -13,7 +13,7 @@
 #include "../../cub3d_header/cub3d.h"
 
 /*
-** Comms
+** Coms
 */
 
 void	ft_rotate(int keycode, t_cub *cub)
@@ -48,7 +48,6 @@ void	ft_rotate_left(t_cub *cub)
 /*
 ** Coms
 */
-
 
 void	ft_rotate_right(t_cub *cub)
 {

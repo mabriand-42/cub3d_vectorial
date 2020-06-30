@@ -34,7 +34,8 @@ typedef	struct	s_color
 	int g;
 	int b;
 }				t_color;
-typedef enum	s_bool
+
+typedef	enum	e_bool
 {
 	no,
 	yes,
@@ -67,7 +68,7 @@ typedef	struct	s_duo
 	char	*prev;
 }				t_duo;
 
-typedef enum	s_card
+typedef	enum	e_card
 {
 	not_given,
 	north,
@@ -79,7 +80,7 @@ typedef enum	s_card
 typedef struct	s_map
 {
 	char	*map;
-	char 	**two_d;
+	char	**two_d;
 	t_bool	first;
 	t_bool	last;
 	t_bool	end;
@@ -88,11 +89,11 @@ typedef struct	s_map
 
 }				t_map;
 
-typedef struct  s_pars
+typedef struct	s_pars
 {
-    t_data	data;
-    t_map	map;
+	t_data	data;
+	t_map	map;
 	t_bool	save;
-}               t_pars;
+}				t_pars;
 
 #endif

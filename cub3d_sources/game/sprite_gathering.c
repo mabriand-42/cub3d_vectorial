@@ -16,7 +16,7 @@
 ** Coms
 */
 
-size_t		ft_sprite_count(char **map)
+size_t	ft_sprite_count(char **map)
 {
 	int x;
 	int y;
@@ -50,9 +50,9 @@ void	ft_sprite_stock(int nbr, char **map, t_cub *cub)
 
 	i = 0;
 	y = 0;
-	cub->sprite.coor = (t_box *)malloc(sizeof(t_box) * nbr);
-	if (cub->sprite.coor == NULL)
-		return;
+	cub->spr.coor = (t_box *)malloc(sizeof(t_box) * nbr);
+	if (cub->spr.coor == NULL)
+		return ;
 	while (map[y] != NULL)
 	{
 		x = 0;
@@ -60,39 +60,39 @@ void	ft_sprite_stock(int nbr, char **map, t_cub *cub)
 		{
 			if (map[y][x] == '2')
 			{
-				cub->sprite.coor[i].x = x;
-				cub->sprite.coor[i].y = y;
+				cub->spr.coor[i].x = x;
+				cub->spr.coor[i].y = y;
 				i++;
 			}
 			x++;
 		}
 		y++;
-	}	
+	}
 }
 
 /*
 ** Coms
 */
 
-void		ft_sprite_dist(t_cub *cub)
+void	ft_sprite_dist(t_cub *cub)
 {
 	int i;
 	int	side1;
 	int	side2;
 
 	i = 0;
-	cub->sprite.rank = malloc(sizeof(size_t) * cub->sprite.count);
-	if 	(cub->sprite.rank == NULL)
-		return;
-	cub->sprite.dist = malloc(sizeof(double) * cub->sprite.count);
-	if 	(cub->sprite.dist == NULL)
-		return;
-	while (i < cub->sprite.count)
+	cub->spr.rank = malloc(sizeof(size_t) * cub->spr.count);
+	if (cub->spr.rank == NULL)
+		return ;
+	cub->spr.dist = malloc(sizeof(double) * cub->spr.count);
+	if (cub->spr.dist == NULL)
+		return ;
+	while (i < cub->spr.count)
 	{
-		side1 = (cub->player.pos.x - cub->sprite.coor[i].x);
-		side2 = (cub->player.pos.y - cub->sprite.coor[i].y);
-		cub->sprite.rank[i] = i;
-		cub->sprite.dist[i] = ft_hypothenuse(side1, side2);
+		side1 = (cub->player.pos.x - cub->spr.coor[i].x);
+		side2 = (cub->player.pos.y - cub->spr.coor[i].y);
+		cub->spr.rank[i] = i;
+		cub->spr.dist[i] = ft_hypothenuse(side1, side2);
 		i++;
 	}
 }
@@ -108,16 +108,17 @@ void	ft_sort_sprite(t_cub *cub)
 	double	swap_dist;
 
 	i = 0;
-	while (i < cub->sprite.count)
+	while (i < cub->spr.count)
 	{
-		if (i + 1 < cub->sprite.count && cub->sprite.dist[i] < cub->sprite.dist[i + 1])
+		if (i + 1 < cub->spr.count &&
+			cub->spr.dist[i] < cub->spr.dist[i + 1])
 		{
-			swap_rank = cub->sprite.rank[i + 1];
-			swap_dist = cub->sprite.dist[i + 1];
-			cub->sprite.rank[i + 1] = cub->sprite.rank[i];
-			cub->sprite.dist[i + 1] = cub->sprite.dist[i];
-			cub->sprite.rank[i] = swap_rank;
-			cub->sprite.dist[i] = swap_dist;
+			swap_rank = cub->spr.rank[i + 1];
+			swap_dist = cub->spr.dist[i + 1];
+			cub->spr.rank[i + 1] = cub->spr.rank[i];
+			cub->spr.dist[i + 1] = cub->spr.dist[i];
+			cub->spr.rank[i] = swap_rank;
+			cub->spr.dist[i] = swap_dist;
 			i = -1;
 		}
 		i++;
@@ -130,8 +131,8 @@ void	ft_sort_sprite(t_cub *cub)
 
 void	ft_gather_sprite(t_cub *cub)
 {
-	cub->sprite.count = ft_sprite_count(cub->box_map);
-	ft_sprite_stock(cub->sprite.count, cub->box_map, cub);
+	cub->spr.count = ft_sprite_count(cub->box_map);
+	ft_sprite_stock(cub->spr.count, cub->box_map, cub);
 	ft_sprite_dist(cub);
 	ft_sort_sprite(cub);
 }

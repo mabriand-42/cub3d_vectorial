@@ -15,32 +15,43 @@
 /*
 ** Coms
 */
-int    ft_get_img_data(t_image *img, void *mlx_ptr)
+
+int		ft_get_img_data(t_image *img, void *mlx_ptr)
 {
-	img->img_ptr = mlx_xpm_file_to_image(mlx_ptr, img->path, &img->r.x, &img->r.y);
+	img->img_ptr = mlx_xpm_file_to_image(mlx_ptr, img->path,
+										&img->r.x, &img->r.y);
 	if (img->img_ptr != NULL)
 	{
-    	img->addr = mlx_get_data_addr(img->img_ptr, &img->bpp, &img->size_line, &img->endian);
+		img->addr = mlx_get_data_addr(img->img_ptr, &img->bpp,
+									&img->size_line, &img->endian);
 		img->i_addr = (int*)img->addr;
 		return (1);
 	}
 	else
 		return (0);
-    
 }
+
+/*
+** Coms
+*/
+
 void	ft_generate_texture(t_cub *cub)
 {
-	if (ft_get_img_data(&cub->texture.no_img, cub->mlx_ptr) == 0)
+	if (ft_get_img_data(&cub->text.no_img, cub->mlx_ptr) == 0)
 		ft_close_pgm(cub);
-	if (ft_get_img_data(&cub->texture.so_img, cub->mlx_ptr) == 0)
+	if (ft_get_img_data(&cub->text.so_img, cub->mlx_ptr) == 0)
 		ft_close_pgm(cub);
-	if (ft_get_img_data(&cub->texture.we_img, cub->mlx_ptr) == 0)
+	if (ft_get_img_data(&cub->text.we_img, cub->mlx_ptr) == 0)
 		ft_close_pgm(cub);
-	if (ft_get_img_data(&cub->texture.ea_img, cub->mlx_ptr) == 0)
+	if (ft_get_img_data(&cub->text.ea_img, cub->mlx_ptr) == 0)
 		ft_close_pgm(cub);
-	if (ft_get_img_data(&cub->texture.s_img, cub->mlx_ptr) == 0)
+	if (ft_get_img_data(&cub->text.s_img, cub->mlx_ptr) == 0)
 		ft_close_pgm(cub);
 }
+
+/*
+** Coms
+*/
 
 void	ft_init_image(t_cub *cub)
 {

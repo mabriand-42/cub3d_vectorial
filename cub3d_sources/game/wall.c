@@ -71,7 +71,7 @@ void	ft_side_y(t_cub *cub)
 void	ft_we_wall(t_cub *cub)
 {
 	if (cub->cast.ray_dir.x < 0)
-			cub->cast.wall = west;
+		cub->cast.wall = west;
 	else
 		cub->cast.wall = east;
 }

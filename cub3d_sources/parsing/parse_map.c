@@ -28,7 +28,7 @@ int		ft_closed_map(char *line, size_t *pos)
 {
 	while (line[*pos] != '\0')
 	{
-		if (line[*pos] == '1' || line[*pos] == ' ')
+		if (line[*pos] == '1' || line[*pos] == ' ' || line[*pos] == '\t')
 			(*pos)++;
 		else
 			return (0);
@@ -87,7 +87,7 @@ int		ft_cmp_prev_next(char c1, char *line, size_t index)
 	size_t	i_prev;
 	char	c2;
 	char	c3;
-	
+
 	i_next = index + 1;
 	i_prev = index - 1;
 	c2 = line[i_prev];

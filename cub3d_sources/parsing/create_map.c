@@ -68,6 +68,40 @@ int		ft_is_empty_string(char *str)
 		return (0);
 }
 
+/*
+** Coms
+*/
+
+void	ft_last_line(char *line, char *prev, t_map *map, int *ret)
+{
+	size_t	i;
+
+	i = 0;
+	if (map->last == yes && map->end == no && ft_is_empty_string(line) == 1)
+	{
+		map->end = yes;
+		ft_create_map(map, line, ret);
+	}
+	else if (map->last == yes && map->end == no)
+	{
+		if (ft_closed_map(line, &i) == 0)
+			map->last = no;
+		if (ft_duo_line(line, prev, map) == 1)
+			ft_create_map(map, line, ret);
+	}
+	else if (map->last == yes && map->end == yes)
+	{
+		if (ft_is_empty_string(line) == 1)
+			ft_create_map(map, line, ret);
+		else
+			map->pb = yes;
+	}
+}
+
+/*
+** Coms
+*/
+
 int		ft_lines(char *line, char *prev, t_map *map, t_data *data)
 {
 	int			ret;
@@ -75,7 +109,6 @@ int		ft_lines(char *line, char *prev, t_map *map, t_data *data)
 
 	ret = 0;
 	i = 0;
-	printf("first: %d - last: %d - end: %d\n", map->first, map->last, map->end);
 	if (map->first == no && (ft_check_config(data->check) == 1))
 	{
 		if (ft_closed_map(line, &i) == 1)
@@ -83,43 +116,16 @@ int		ft_lines(char *line, char *prev, t_map *map, t_data *data)
 	}
 	else if (map->first == yes && (ft_check_config(data->check) == 1))
 	{
-		if (map->last == no)
+		if (map->last == no && ft_closed_map(line, &i) == 1)
 		{
-			if (ft_closed_map(line, &i) == 1)
-			{	
-				map->last = yes;
-				if (ft_duo_line(line, prev, map) == 1)
-					ft_create_map(map, line, &ret);
-			}
-			else if (ft_duo_line(line, prev, map) == 1)
-					ft_create_map(map, line, &ret);
-		}
-		else if (map->last == yes && map->end == no) 
-		{
-			if (ft_is_empty_string(line) == 1)
-			{
-				map->end = yes;
+			map->last = yes;
+			if (ft_duo_line(line, prev, map) == 1)
 				ft_create_map(map, line, &ret);
-			}
-			else if (ft_closed_map(line, &i) == 0)
-			{
-				map->last = no;
-				if (ft_duo_line(line, prev, map) == 1)
-					ft_create_map(map, line, &ret);
-			}
-			else if (ft_closed_map(line, &i) == 1)
-			{
-				if (ft_duo_line(line, prev, map) == 1)
-					ft_create_map(map, line, &ret);
-			}
 		}
-		else if (map->last == yes && map->end == yes)
-		{
-			if (ft_is_empty_string(line) == 1)
-				ft_create_map(map, line, &ret);
-			else
-				map->pb = yes;
-		}
+		else if (map->last == no && ft_duo_line(line, prev, map) == 1)
+			ft_create_map(map, line, &ret);
+		else
+			ft_last_line(line, prev, map, &ret);
 	}
 	free(prev);
 	return (ret);

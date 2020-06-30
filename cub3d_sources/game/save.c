@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   save.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mabriand <mabriand@student.42.fr>           +#+  +:+       +#+        */
+/*   By: mabriand <mabriand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 14:59:41 by mabriand          #+#    #+#             */
 /*   Updated: 2020/04/08 16:44:43 by mabriand         ###   ########.fr       */
@@ -13,8 +13,9 @@
 #include "../../cub3d_header/cub3d.h"
 
 /*
-** Comms
+** Coms
 */
+
 unsigned char	*ft_file_bmp(int size)
 {
 	unsigned char	*file;
@@ -31,6 +32,10 @@ unsigned char	*ft_file_bmp(int size)
 	file[10] = 54;
 	return (file);
 }
+
+/*
+** Coms
+*/
 
 unsigned char	*ft_info_bmp(t_cub *cub)
 {
@@ -53,7 +58,11 @@ unsigned char	*ft_info_bmp(t_cub *cub)
 	return (info);
 }
 
-void		ft_write_data(int file, char *data, t_cub *cub)
+/*
+** Coms
+*/
+
+void			ft_write_data(int file, char *data, t_cub *cub)
 {
 	int		line;
 	int		pos;
@@ -74,7 +83,11 @@ void		ft_write_data(int file, char *data, t_cub *cub)
 	}
 }
 
-void		ft_save(t_cub *cub)
+/*
+** Coms
+*/
+
+void			ft_save(t_cub *cub)
 {
 	int				size;
 	int				fd;
