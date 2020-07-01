@@ -24,11 +24,11 @@
 ** Retourne 0 si tout est OK, 1 sinon.
 */
 
-int		ft_closed_map(char *line, size_t *pos)
+int		ft_closed_map(char *str1, size_t *pos)
 {
-	while (line[*pos] != '\0')
+	while (str1[*pos] != '\0')
 	{
-		if (line[*pos] == '1' || line[*pos] == ' ' || line[*pos] == '\t')
+		if (str1[*pos] == '1' || str1[*pos] == ' ' || str1[*pos] == '\t')
 			(*pos)++;
 		else
 			return (0);
@@ -172,9 +172,9 @@ int		ft_duo_line_cp(char *next, char *prev, size_t *ptr_i, size_t *ptr_j)
 	else if (next[i] != '\0' && prev[j] != '\0')
 		return (0);
 	else if (next[i] == '\0' && prev[j] != '\0')
-		return (ft_closed_map(prev, &j));
+		return (ft_check_end(prev, &j));
 	else if (next[i] != '\0' && prev[j] == '\0')
-		return (ft_closed_map(next, &i));
+		return (ft_check_end(next, &i));
 	else
 		return (0);
 }

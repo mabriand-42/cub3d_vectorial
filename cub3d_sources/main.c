@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../cub3d_header/cub3d.h"
+#include "../cub3d_header/cub3d.h"
 
 int	main(int argc, char **argv)
 {
@@ -18,19 +18,16 @@ int	main(int argc, char **argv)
 	t_cub	cub;
 
 	if (ft_check_input(&pars, &cub, argc, argv) == 0)
-	{
-		printf("ERROR : inputs!\n\n");
 		return (0);
-	}
 	if (ft_get_player_data(&cub) == 0)
 	{
-		printf("ERROR : player!\n\n");
+		ft_printf("ERROR : player!\n\n");
 		return (0);
 	}
 	ft_gather_sprite(&cub);
 	if (ft_start(&cub) == 0)
 	{
-		printf("ERROR : start!\n\n");
+		ft_printf("ERROR : start!\n\n");
 		return (0);
 	}
 	system("leaks a.out");

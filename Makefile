@@ -15,7 +15,7 @@ NAME = libcub3d.a
 ##################################### PATH #####################################
 
 PARSE = cub3d_sources/parsing/
-LIBFT = libft/libft_sources/
+GAME = cub3d_sources/game/
 
 #################################### SOURCES ###################################
 
@@ -25,49 +25,85 @@ SRCS +=	$(PARSE)create_map.c			$(PARSE)gnl.c \
 		$(PARSE)parse_config.c			$(PARSE)parse_map.c \
 		$(PARSE)parse_resolution.c		$(PARSE)parse_texture.c \
 		$(PARSE)parsing.c				$(PARSE)parse_utils.c	\
-		$(PARSE)update_pars.c	
+		$(PARSE)update_pars.c
+#-------------------------------GAME-#
+SRCS += $(GAME)draw.c					$(GAME)event.c \
+		$(GAME)game_init.c				$(GAME)game_utils.c \
+		$(GAME)input.c					$(GAME)move.c \
+		$(GAME)player.c					$(GAME)print_sprite.c \
+		$(GAME)raycast.c				$(GAME)rotate.c \
+		$(GAME)save.c					$(GAME)sprite_gathering.c \
+		$(GAME)start.c					$(GAME)texture_mapping.c \
+		$(GAME)texture.c				$(GAME)wall.c 
+#-------------------------------MAIN-#
+SRCS += cub3d_sources/main.c
 
 ##################################### BASIC ####################################
 
-CFLAGS 	= -Wall -Wextra -Werror
+CFLAGS 	=	-Wall -Wextra -Werror
 
-CC		= gcc
+CC		= 	clang
 
-INC		= cub3d_header/
+INC		= 	cub3d_header/
 
-HEADER	= $(INC)cub3d.h
+HEADER	= 	$(INC)cub3d.h
 
-OBJS	= $(SRCS:.c=.o)
+OBJS	=	$(SRCS:.c=.o)
 
-OBJLIB =	$(LIBFT)ft_printf/*.o		$(LIBFT)get-next-line/*.o \
-			$(LIBFT)libft_char/*.o		$(LIBFT)libft_convert/*.o \
-			$(LIBFT)libft_list/*.o		$(LIBFT)libft_memory/*.o \
-			$(LIBFT)libft_nbr/*.o		$(LIBFT)libft_output/*.o \
-			$(LIBFT)libft_string/*.o
-			
+LIB 	= 	libft/libft.a
+
+MLX 	+=	minilibx-linux/libmlx.a \
+			minilibx-linux/libmlx_Linux.a
+
 ##################################### RULES ####################################
 
-all: complib $(NAME)
-
-complib:
-		$(MAKE) -C libft all
+all: complib compmlx $(NAME)
 
 $(OBJS): %.o: %.c $(HEADER)
 		$(CC) $(CFLAGS) -I$(INC) -c $< -o $@
 
+#-------------------------------COMP-#
+
 $(NAME): $(OBJS)
-	ar rc $@ $(OBJS) $(OBJLIB)
+	ar rcs $@ $(OBJS) $(LIB)
 	ranlib $(NAME)
 
-clean:
-	$(MAKE) -C libft clean
+complib:
+	$(MAKE) -C libft all
+
+compmlx:
+	$(MAKE) -C minilibx-linux all
+
+#-------------------------------EXEC-#
+
+exe : $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIB) $(MLX) -lm -lXext -lX11 -o Cub3D
+
+#------------------------------CLEAN-#
+
+cleanlib:
+	rm -f libft/libft_sources/*/*.o
+	rm $(LIB)
+
+cleanmlx:
+	rm -f minilibx-linux/*.o
+	rm $(MLX)
+
+cleancub:
 	rm -f $(PARSE)*.o
+	rm -f $(GAME)*.o
+	rm -f cub3d_sources/main.o
+	rm libcub3d.a
+
+clean: cleanlib cleanmlx cleancub
 
 fclean: clean
-	$(MAKE) -C libft fclean
-	rm -f $(NAME)
+	rm Cub3D
+	rm screenshot.bmp
+
+#---------------------------------RE-#
 
 re: fclean all
 
 .PHONY:	all clean fclean re
-.SILENT: #pour pas que ca affiche tout ce qu'il fait
+.SILENT:

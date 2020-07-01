@@ -106,13 +106,13 @@ int		ft_check_input(t_pars *pars, t_cub *cub, int ac, char **av)
 	ret_check_arg = ft_check_arg(ac, av, pars);
 	if (ret_check_arg == 0)
 	{
-		printf("ERROR 0\n\n");
+		ft_printf("error ARGUMENTS");
 		return (0);
 	}
 	ret_parse = ft_parse_fd(av[1], pars);
 	if (ret_parse == 0)
 	{
-		printf("ERROR 1\n\n");
+		ft_printf("error FILE\n\n");
 		return (0);
 	}
 	ft_equivalent_data(pars, cub);

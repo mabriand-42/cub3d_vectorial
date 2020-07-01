@@ -130,3 +130,15 @@ int		ft_lines(char *line, char *prev, t_map *map, t_data *data)
 	free(prev);
 	return (ret);
 }
+
+
+/*
+** Coms
+*/
+
+int		ft_check_end(char *str, size_t *pos)
+{
+	if (str[*pos - 1] != '1' || str[*pos] != '1')
+		return (0);
+	return (ft_closed_map(str, pos));
+}

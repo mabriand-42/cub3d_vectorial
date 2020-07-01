@@ -97,7 +97,7 @@ void	ft_loop(t_cub *cub, t_box s, double *dst)
 
 void	ft_print_sprite(t_cub *cub, double *dst)
 {
-	int i;
+	size_t i;
 
 	i = 0;
 	while (i < cub->spr.count)

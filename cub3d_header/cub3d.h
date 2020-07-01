@@ -72,13 +72,14 @@ int		ft_text(char *line, size_t *pos, char **path, t_bool *check);
 /*
 ** Map
 */
-int		ft_closed_map(char *line, size_t *pos);
+int		ft_closed_map(char *str1, size_t *pos);
 int		ft_cmp_char(char c1, char c2, t_map *map);
 int		ft_cmp_prev_next(char c1, char *line, size_t index);
 int		ft_duo_line(char *prev, char *next, t_map *map);
 int		ft_duo_line_cp(char *prev, char *next, size_t *ptr_i, size_t *ptr_j);
 void	ft_create_map(t_map *map, char *next, int *ret);
 int		ft_lines(char *line, char *next, t_map *map, t_data *data);
+int		ft_check_end(char *str, size_t *pos);
 /*
 ** Parsing
 */
