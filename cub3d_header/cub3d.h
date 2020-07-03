@@ -184,5 +184,11 @@ int		ft_parse_fd(char *fd_path, t_pars *cub);
 int		ft_start(t_cub *cub);
 void	ft_init_cub(t_cub *cub);
 int		ft_game_starter(t_cub *cub);
+void	ft_free_path(t_cub *cub);
+void	ft_free_mlx_ptr(void *mlx_ptr);
+void	ft_free_sprite(t_cub *cub);
+void	ft_free_tab(char **tab);
+void	ft_free_img(t_cub *cub);
+
 
 #endif

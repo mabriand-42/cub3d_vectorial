@@ -49,7 +49,7 @@ int	ft_path(char *line, size_t *pos, size_t save_pos, char **path)
 				return (0);
 		}
 		ft_reinit_buffer(save_pos, line);
-		*path = strndup(line, path_size);
+		*path = ft_strndup(line, path_size);
 		return (1);
 	}
 	return (0);

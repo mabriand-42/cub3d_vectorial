@@ -92,18 +92,26 @@ int		ft_zero_gnl(t_map *m, char *str, t_duo duo, t_data *c)
 	if (m->end == no && ft_closed_map(str, &i) == 1)
 	{
 		if (ft_lines(str, duo.prev, m, c) == 0)
+		{
+			//free(m->two_d);
 			return (0);
+		}
 		m->end = yes;
 		m->two_d = ft_split(m->map, '-');
+		//free(m->map);
 		return (1);
 	}
 	else if (m->end == yes && ft_is_empty_string(str) == 1)
 	{
 		m->two_d = ft_split(m->map, '-');
+		free(m->map);
 		return (1);
 	}
 	else
+	{
+		//free(m->two_d);
 		return (0);
+	}
 }
 
 /*
@@ -129,7 +137,10 @@ int		ft_orient_gnl(int ret_gnl, t_map *m, t_data *c, t_duo duo)
 	if (ret_gnl == 0)
 	{
 		if (ft_zero_gnl(m, str, duo, c) == 0)
+		{
+			free(str);
 			return (0);
+		}
 	}
 	else
 	{
@@ -137,7 +148,15 @@ int		ft_orient_gnl(int ret_gnl, t_map *m, t_data *c, t_duo duo)
 			(ret_ep == 1 && m->end == yes && ft_lines(str, duo.prev, m, c) == 0)
 			|| (ret_ep == 1 && m->first == yes && m->end == no &&
 			ft_lines(str, duo.prev, m, c) == 0) || (ret_ep == 0))
+		{
+			free(str);
+			free(c->t.path_no);
+			free(c->t.path_so);
+			free(c->t.path_we);
+			free(c->t.path_ea);
+			free(c->t.path_s);
 			return (0);
+		}
 	}
 	free(str);
 	return (1);
@@ -172,6 +191,9 @@ int		ft_parse_fd(char *fd_path, t_pars *ptr)
 		if (ft_orient_gnl(ret_gnl, &(ptr->map), &(ptr->data), duo) == 0)
 		{
 			close(fd);
+			free(duo.prev);
+			free(duo.line);
+			free(ptr->map.map);
 			return (0);
 		}
 		free(duo.prev);
@@ -181,6 +203,10 @@ int		ft_parse_fd(char *fd_path, t_pars *ptr)
 	}
 	close(fd);
 	if (&(ptr->map.card) == not_given || ptr->map.end == no)
+	{
+		free(ptr->map.map);
 		return (0);
+	}
+	free(ptr->map.map);
 	return (1);
 }

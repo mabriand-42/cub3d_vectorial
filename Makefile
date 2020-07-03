@@ -34,13 +34,14 @@ SRCS += $(GAME)draw.c					$(GAME)event.c \
 		$(GAME)raycast.c				$(GAME)rotate.c \
 		$(GAME)save.c					$(GAME)sprite_gathering.c \
 		$(GAME)start.c					$(GAME)texture_mapping.c \
-		$(GAME)texture.c				$(GAME)wall.c 
+		$(GAME)texture.c				$(GAME)wall.c \
+		$(GAME)free.c
 #-------------------------------MAIN-#
 SRCS += cub3d_sources/main.c
 
 ##################################### BASIC ####################################
 
-CFLAGS 	=	-Wall -Wextra -Werror
+CFLAGS 	=	-Wall -Wextra -Werror #-g3 -fsanitize=address
 
 CC		= 	clang
 
@@ -77,7 +78,7 @@ compmlx:
 #-------------------------------EXEC-#
 
 exe : $(NAME)
-	$(CC) $(CFLAGS) -g3 -fsanitize=address $(OBJS) $(LIB) $(MLX) -lm -lXext -lX11 -o Cub3D
+	$(CC) $(CFLAGS) $(OBJS) $(LIB) $(MLX) -lm -lXext -lX11 -o Cub3D
 
 #------------------------------CLEAN-#
 

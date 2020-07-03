@@ -18,10 +18,15 @@
 
 int		ft_close_pgm(t_cub *cub)
 {
+	mlx_destroy_image(cub->mlx_ptr, cub->img.img_ptr);
+	ft_free_img(cub);
 	mlx_clear_window(cub->mlx_ptr, cub->win.win_ptr);
 	mlx_destroy_window(cub->mlx_ptr, cub->win.win_ptr);
+	ft_free_mlx_ptr(cub->mlx_ptr);
+	ft_free_path(cub);
+	ft_free_sprite(cub);
+	ft_free_tab(cub->box_map);
 	exit(EXIT_SUCCESS);
-	//free(cub->box_map);
 	ft_printf("BYE !");
 	return (0);
 }

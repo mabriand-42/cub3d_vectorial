@@ -36,8 +36,8 @@ void	ft_init_player(t_player *player)
 	player->dir.y = 0;
 	player->plane.x = 0;
 	player->plane.x = 0;
-	player->box.x = 0; //
-	player->box.y = 0; //
+	player->box.x = 0;
+	player->box.y = 0;
 }
 
 /*
@@ -58,11 +58,11 @@ void	ft_init_cast(t_cast *cast)
 	cast->map.x = 0;
 	cast->map.y = 0;
 	cast->wall = not_given;
-	cast->line_height = 0; //
-	cast->slice = 0; //
-	cast->in_w = 0; //
-	cast->in_t.x = 0; //
-	cast->in_t.y = 0; //
+	cast->line_height = 0;
+	cast->slice = 0;
+	cast->in_w = 0;
+	cast->in_t.x = 0;
+	cast->in_t.y = 0;
 }
 
 /*
@@ -79,8 +79,8 @@ void	ft_init_draw(t_draw *draw)
 	draw->floor.y = 0;
 	draw->wall.x = 0;
 	draw->wall.y = 0;
-	draw->spr_h.x = 0; //
-	draw->spr_h.y = 0; //
-	draw->spr_w.x = 0; //
-	draw->spr_w.y = 0; //
+	draw->spr_h.x = 0;
+	draw->spr_h.y = 0;
+	draw->spr_w.x = 0;
+	draw->spr_w.y = 0;
 }

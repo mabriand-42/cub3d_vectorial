@@ -76,9 +76,9 @@ void	ft_sprite_stock(int nbr, char **map, t_cub *cub)
 
 void	ft_sprite_dist(t_cub *cub)
 {
-	size_t i;
-	int	side1;
-	int	side2;
+	size_t	i;
+	int		side1;
+	int		side2;
 
 	i = 0;
 	cub->spr.rank = malloc(sizeof(size_t) * cub->spr.count);
@@ -103,7 +103,7 @@ void	ft_sprite_dist(t_cub *cub)
 
 void	ft_sort_sprite(t_cub *cub)
 {
-	size_t		i;
+	size_t	i;
 	size_t	swap_rank;
 	double	swap_dist;
 

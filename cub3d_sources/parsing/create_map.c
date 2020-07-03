@@ -130,7 +130,6 @@ int		ft_lines(char *line, char *prev, t_map *map, t_data *data)
 	return (ret);
 }
 
-
 /*
 ** Coms
 */
