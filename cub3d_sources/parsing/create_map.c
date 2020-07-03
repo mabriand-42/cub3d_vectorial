@@ -127,7 +127,6 @@ int		ft_lines(char *line, char *prev, t_map *map, t_data *data)
 		else
 			ft_last_line(line, prev, map, &ret);
 	}
-	free(prev);
 	return (ret);
 }
 

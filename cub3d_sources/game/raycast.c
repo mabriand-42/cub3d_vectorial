@@ -65,6 +65,9 @@ int		ft_raycast(t_cub *cub)
 
 	x = 0;
 	width = cub->img.r.x;
+	free(cub->spr.coor);
+	free(cub->spr.rank);
+	free(cub->spr.dist);
 	while (x < width)
 	{
 		cub->cast.map.x = (int)cub->player.pos.x;

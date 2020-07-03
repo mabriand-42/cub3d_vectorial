@@ -77,7 +77,7 @@ compmlx:
 #-------------------------------EXEC-#
 
 exe : $(NAME)
-	$(CC) $(CFLAGS) $(OBJS) $(LIB) $(MLX) -lm -lXext -lX11 -o Cub3D
+	$(CC) $(CFLAGS) -g3 -fsanitize=address $(OBJS) $(LIB) $(MLX) -lm -lXext -lX11 -o Cub3D
 
 #------------------------------CLEAN-#
 
@@ -98,8 +98,8 @@ cleancub:
 clean: cleanlib cleanmlx cleancub
 
 fclean: clean
-	rm Cub3D
-	rm screenshot.bmp
+	#rm Cub3D
+	#rm screenshot.bmp
 
 #---------------------------------RE-#
 

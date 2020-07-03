@@ -22,7 +22,7 @@
 ** #2 : Le caractère délimitant.
 ** =======
 ** Retourne le tableau de nouvelles chaînes de caractères,
-** NULL si l’allocationéchoue
+** NULL si l’allocation échoue
 */
 
 static int		ft_countword(char const *s, char c)

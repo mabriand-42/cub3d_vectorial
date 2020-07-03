@@ -18,7 +18,9 @@ int	main(int argc, char **argv)
 	t_cub	cub;
 
 	if (ft_check_input(&pars, &cub, argc, argv) == 0)
+	{	
 		return (0);
+	}
 	if (ft_get_player_data(&cub) == 0)
 	{
 		ft_printf("ERROR : player!\n\n");
@@ -30,6 +32,5 @@ int	main(int argc, char **argv)
 		ft_printf("ERROR : start!\n\n");
 		return (0);
 	}
-	system("leaks a.out");
 	return (0);
 }

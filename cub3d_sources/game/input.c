@@ -112,6 +112,8 @@ int		ft_check_input(t_pars *pars, t_cub *cub, int ac, char **av)
 	ret_parse = ft_parse_fd(av[1], pars);
 	if (ret_parse == 0)
 	{
+		free(pars->map.map);
+		free(pars->map.two_d);
 		ft_printf("error FILE\n\n");
 		return (0);
 	}

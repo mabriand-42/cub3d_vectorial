@@ -170,11 +170,16 @@ int		ft_parse_fd(char *fd_path, t_pars *ptr)
 	{
 		ret_gnl = gnl(fd, &duo.line);
 		if (ft_orient_gnl(ret_gnl, &(ptr->map), &(ptr->data), duo) == 0)
+		{
+			close(fd);
 			return (0);
+		}
+		free(duo.prev);
 		if (ret_gnl != 0)
 			duo.prev = ft_strdup(duo.line);
 		free(duo.line);
 	}
+	close(fd);
 	if (&(ptr->map.card) == not_given || ptr->map.end == no)
 		return (0);
 	return (1);
