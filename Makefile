@@ -41,7 +41,7 @@ SRCS += cub3d_sources/main.c
 
 ##################################### BASIC ####################################
 
-CFLAGS 	=	-Wall -Wextra -Werror #-g3 -fsanitize=address
+CFLAGS 	=	-Wall -Wextra -Werror -g3 -fsanitize=address
 
 CC		= 	clang
 

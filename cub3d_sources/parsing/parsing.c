@@ -92,13 +92,9 @@ int		ft_zero_gnl(t_map *m, char *str, t_duo duo, t_data *c)
 	if (m->end == no && ft_closed_map(str, &i) == 1)
 	{
 		if (ft_lines(str, duo.prev, m, c) == 0)
-		{
-			//free(m->two_d);
 			return (0);
-		}
 		m->end = yes;
 		m->two_d = ft_split(m->map, '-');
-		//free(m->map);
 		return (1);
 	}
 	else if (m->end == yes && ft_is_empty_string(str) == 1)
@@ -108,10 +104,7 @@ int		ft_zero_gnl(t_map *m, char *str, t_duo duo, t_data *c)
 		return (1);
 	}
 	else
-	{
-		//free(m->two_d);
 		return (0);
-	}
 }
 
 /*
