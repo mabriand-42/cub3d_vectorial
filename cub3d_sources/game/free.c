@@ -16,13 +16,6 @@
 ** Coms
 */
 
-void	ft_free_all(t_cub *cub)
-{
-	ft_free_path(cub);
-	ft_free_sprite(cub);
-	ft_free_tab(cub->box_map);
-}
-
 void	ft_free_tab(char **tab)
 {
 	size_t i;
@@ -61,26 +54,32 @@ void	ft_free_path(t_cub *cub)
 ** Coms
 */
 
-void	ft_free_sprite(t_cub *cub)
+void	ft_free_path_bis(t_data *c)
 {
-	free(cub->spr.coor);
-	free(cub->spr.dist);
-	free(cub->spr.rank);
+	if (c->t.path_no != NULL)
+		free(c->t.path_no);
+	if (c->t.path_so != NULL)
+		free(c->t.path_so);
+	if (c->t.path_we != NULL)
+		free(c->t.path_we);
+	if (c->t.path_ea != NULL)
+		free(c->t.path_ea);
+	if (c->t.path_s != NULL)
+		free(c->t.path_s);
 }
 
 /*
 ** Coms
 */
 
-void	ft_free_mlx_ptr(void *mlx_ptr)
+void	ft_free_sprite(t_cub *cub)
 {
-	struct s_xvar	*xvar;
-
-	xvar = mlx_ptr;
-	if (xvar->private_cmap)
-		XFreeColormap(xvar->display, (Colormap)xvar->private_cmap);
-	XCloseDisplay(xvar->display);
-	free(xvar);
+	if (cub->spr.coor != NULL)
+		free(cub->spr.coor);
+	if (cub->spr.dist != NULL)
+		free(cub->spr.dist);
+	if (cub->spr.rank != NULL)
+		free(cub->spr.rank);
 }
 
 /*
@@ -89,9 +88,14 @@ void	ft_free_mlx_ptr(void *mlx_ptr)
 
 void	ft_free_img(t_cub *cub)
 {
-	mlx_destroy_image(cub->mlx_ptr, cub->text.no_img.img_ptr);
-	mlx_destroy_image(cub->mlx_ptr, cub->text.so_img.img_ptr);
-	mlx_destroy_image(cub->mlx_ptr, cub->text.we_img.img_ptr);
-	mlx_destroy_image(cub->mlx_ptr, cub->text.ea_img.img_ptr);
-	mlx_destroy_image(cub->mlx_ptr, cub->text.s_img.img_ptr);
+	if (cub->text.no_img.img_ptr != NULL)
+		mlx_destroy_image(cub->mlx_ptr, cub->text.no_img.img_ptr);
+	if (cub->text.so_img.img_ptr != NULL)
+		mlx_destroy_image(cub->mlx_ptr, cub->text.so_img.img_ptr);
+	if (cub->text.we_img.img_ptr != NULL)
+		mlx_destroy_image(cub->mlx_ptr, cub->text.we_img.img_ptr);
+	if (cub->text.ea_img.img_ptr != NULL)
+		mlx_destroy_image(cub->mlx_ptr, cub->text.ea_img.img_ptr);
+	if (cub->text.s_img.img_ptr != NULL)
+		mlx_destroy_image(cub->mlx_ptr, cub->text.s_img.img_ptr);
 }

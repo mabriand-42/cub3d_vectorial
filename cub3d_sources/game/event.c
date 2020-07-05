@@ -18,8 +18,8 @@
 
 int		ft_close_pgm(t_cub *cub)
 {
-	mlx_destroy_image(cub->mlx_ptr, cub->img.img_ptr);
 	ft_free_img(cub);
+	mlx_destroy_image(cub->mlx_ptr, cub->img.img_ptr);
 	mlx_clear_window(cub->mlx_ptr, cub->win.win_ptr);
 	mlx_destroy_window(cub->mlx_ptr, cub->win.win_ptr);
 	ft_free_mlx_ptr(cub->mlx_ptr);

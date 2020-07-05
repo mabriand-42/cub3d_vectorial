@@ -25,7 +25,7 @@ SRCS +=	$(PARSE)create_map.c			$(PARSE)gnl.c \
 		$(PARSE)parse_config.c			$(PARSE)parse_map.c \
 		$(PARSE)parse_resolution.c		$(PARSE)parse_texture.c \
 		$(PARSE)parsing.c				$(PARSE)parse_utils.c	\
-		$(PARSE)update_pars.c
+		$(PARSE)update_pars.c			$(PARSE)map_cp.c
 #-------------------------------GAME-#
 SRCS += $(GAME)draw.c					$(GAME)event.c \
 		$(GAME)game_init.c				$(GAME)game_utils.c \
@@ -41,7 +41,7 @@ SRCS += cub3d_sources/main.c
 
 ##################################### BASIC ####################################
 
-CFLAGS 	=	-Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS 	=	-Wall -Wextra -Werror #-g3 -fsanitize=address
 
 CC		= 	clang
 

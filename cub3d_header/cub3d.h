@@ -191,4 +191,13 @@ void	ft_free_tab(char **tab);
 void	ft_free_img(t_cub *cub);
 
 
+
+
+int		ft_index_zero(char c1, char *line);
+void	ft_free_path_bis(t_data *c);
+/*int		ft_parse_line(int *ret_gnl, int fd, t_duo *duo, t_pars *ptr);*/
+int		ft_zero_gnl(t_map *m, char *str, t_duo duo, t_data *c);
+int		ft_past_gnl(int	fd, t_pars *ptr);
+int		ft_nz_gnl(t_map *m, char *str, t_duo duo, t_data *c);
+
 #endif

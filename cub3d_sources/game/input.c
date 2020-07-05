@@ -111,12 +111,9 @@ int		ft_check_input(t_pars *pars, t_cub *cub, int ac, char **av)
 	}
 	ret_parse = ft_parse_fd(av[1], pars);
 	ft_equivalent_data(pars, cub);
-	free(pars->map.map);
 	if (ret_parse == 0)
 	{
-		free(pars->map.map);
 		ft_free_tab(cub->box_map);
-		ft_free_path(cub);
 		ft_printf("error FILE\n\n");
 		return (0);
 	}

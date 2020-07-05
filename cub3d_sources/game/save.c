@@ -105,5 +105,13 @@ void			ft_save(t_cub *cub)
 	free(info);
 	ft_write_data(fd, cub->img.addr, cub);
 	if (cub->save == yes)
+	{
+		mlx_destroy_image(cub->mlx_ptr, cub->img.img_ptr);
+		ft_free_img(cub);
+		ft_free_mlx_ptr(cub->mlx_ptr);
+		ft_free_sprite(cub);
+		ft_free_tab(cub->box_map);
+		ft_free_path(cub);
 		exit(EXIT_SUCCESS);
+	}
 }

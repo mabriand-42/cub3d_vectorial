@@ -87,43 +87,20 @@ int		ft_cmp_prev_next(char c1, char *line, size_t index)
 	size_t	i_prev;
 	char	c2;
 	char	c3;
-	
-	/*size_t len;
-	len = ft_strlen(line);
+
 	if (index == 0)
-	{
-		c2 = '1';
-		i_next = index + 1;
-		c3 = line[i_next];
-	
-	}
-	if (index == len)
-	{
-		c3 = ' ';
-		i_prev = index - 1;
-		c2 = line[i_prev];
-	}
-	if (index > len)
-	{
-		c2 = ' ';
-		c3 = ' ';
-	}
-	else
-	{*/
+		return (ft_index_zero(c1, line));
 	i_next = index + 1;
 	i_prev = index - 1;
 	c2 = line[i_prev];
 	c3 = line[i_next];
-	//}
 	if (index == 0 && (c1 == '0' || c1 == '2' || ft_iscardinal(c1) == 1))
 		return (0);
 	if (c1 == ' ' && (c2 == '0' || c2 == '2' || ft_iscardinal(c2) == 1))
 		return (0);
 	else if (c1 == ' ' && (c3 == '0' || c3 == '2' || ft_iscardinal(c2) == 1))
 		return (0);
-	else if (c1 == '0' && (c2 == ' ' || c3 == ' '))
-		return (0);
-	else if (c1 == '2' && (c2 == ' ' || c2 == ' '))
+	else if ((c1 == '0' || c1 == '2') && (c2 == ' ' || c3 == ' '))
 		return (0);
 	else if (ft_iscardinal(c1) == 1 && (c2 == ' ' || ft_iscardinal(c2) == 1))
 		return (0);
@@ -167,37 +144,4 @@ int		ft_duo_line(char *next, char *prev, t_map *map)
 			break ;
 	}
 	return (ft_duo_line_cp(next, prev, &i, &j));
-}
-
-/*
-** Vérifie les cas particuliers de ft_duo_line(3).
-** =========
-** #1 : la chaîne de caractères actuelle (lue par GNL).
-** #2 : la chaîne de caractères précédente (lue par GNL).
-** #3 : un pointeur sur une t_map.
-** =========
-** Retourne 0 si tout est OK, 1 sinon.
-*/
-
-int		ft_duo_line_cp(char *next, char *prev, size_t *ptr_i, size_t *ptr_j)
-{
-	size_t	i;
-	size_t	j;
-
-	i = *ptr_i;
-	j = *ptr_j;
-	if (next[i] == '\0' && prev[j] == '\0')
-	{
-		if (next[i - 1] != '1' || prev[i - 1] != '1')
-			return (0);
-		return (1);
-	}
-	else if (next[i] != '\0' && prev[j] != '\0')
-		return (0);
-	else if (next[i] == '\0' && prev[j] != '\0')
-		return (ft_check_end(prev, &j));
-	else if (next[i] != '\0' && prev[j] == '\0')
-		return (ft_check_end(next, &i));
-	else
-		return (0);
 }

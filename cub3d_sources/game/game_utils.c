@@ -56,3 +56,18 @@ double	ft_hypothenuse(int side1, int side2)
 	side3 = sqrt(side3);
 	return (side3);
 }
+
+/*
+** Coms
+*/
+
+void	ft_free_mlx_ptr(void *mlx_ptr)
+{
+	struct s_xvar	*xvar;
+
+	xvar = mlx_ptr;
+	if (xvar->private_cmap)
+		XFreeColormap(xvar->display, (Colormap)xvar->private_cmap);
+	XCloseDisplay(xvar->display);
+	free(xvar);
+}
