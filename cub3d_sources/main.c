@@ -20,15 +20,12 @@ int	main(int argc, char **argv)
 	if (ft_check_input(&pars, &cub, argc, argv) == 0)
 		return (0);
 	if (ft_get_player_data(&cub) == 0)
-	{
-		ft_printf("ERROR : player!\n\n");
 		return (0);
-	}
 	ft_gather_sprite(&cub);
 	if (ft_start(&cub) == 0)
 	{
 		ft_close_pgm(&cub);
-		ft_printf("ERROR : start!\n\n");
+		ft_printf("Couldn't start raycasting... \n");
 		return (0);
 	}
 	return (0);

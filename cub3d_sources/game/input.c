@@ -106,7 +106,7 @@ int		ft_check_input(t_pars *pars, t_cub *cub, int ac, char **av)
 	ret_check_arg = ft_check_arg(ac, av, pars);
 	if (ret_check_arg == 0)
 	{
-		ft_printf("error ARGUMENTS");
+		ft_printf("Please check arguments! \n");
 		return (0);
 	}
 	ret_parse = ft_parse_fd(av[1], pars);
@@ -114,7 +114,7 @@ int		ft_check_input(t_pars *pars, t_cub *cub, int ac, char **av)
 	if (ret_parse == 0)
 	{
 		ft_free_tab(cub->box_map);
-		ft_printf("error FILE\n\n");
+		ft_printf("Your file .cub seems invalid! \n");
 		return (0);
 	}
 	return (1);

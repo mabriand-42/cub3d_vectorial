@@ -103,13 +103,19 @@ int		ft_orient_gnl(int ret_gnl, t_map *m, t_data *c, t_duo duo)
 		if (ft_zero_gnl(m, str, duo, c) == 0)
 		{
 			ft_free_path_bis(c);
+			if (m->first == yes)
+				ft_printf("Something's wrong with your map description... \n");
 			return (0);
 		}
 	}
 	else
 	{
 		if (ft_nz_gnl(m, str, duo, c) == 0)
+		{
+			if (m->first == yes)
+				ft_printf("Something's wrong with your map description... \n");
 			return (0);
+		}
 	}
 	free(str);
 	return (1);
@@ -131,13 +137,12 @@ int		ft_orient_gnl(int ret_gnl, t_map *m, t_data *c, t_duo duo)
 int		ft_parse_fd(char *fd_path, t_pars *ptr)
 {
 	int		fd;
-	int		ret_gnl;
 	t_duo	duo;
+	int		ret_gnl;
 
-	fd = open(fd_path, O_RDONLY);
+	if (ft_open(fd_path, &fd, &duo) == 0)
+		return (0);
 	ret_gnl = 1;
-	duo.line = NULL;
-	duo.prev = NULL;
 	while (ret_gnl > 0)
 	{
 		ret_gnl = gnl(fd, &duo.line);
@@ -155,4 +160,21 @@ int		ft_parse_fd(char *fd_path, t_pars *ptr)
 		free(duo.line);
 	}
 	return (ft_past_gnl(fd, ptr));
+}
+
+/*
+** Coms
+*/
+
+int		ft_open(char *fd_path, int *fd, t_duo *duo)
+{
+	*fd = open(fd_path, O_RDONLY);
+	if (*fd < 0)
+	{
+		ft_printf("Please make sure the path to your .cub is valid! \n");
+		return (0);
+	}
+	duo->line = NULL;
+	duo->prev = NULL;
+	return (1);
 }

@@ -16,7 +16,7 @@
 ** Coms
 */
 
-int		ft_get_img_data(t_image *img, void *mlx_ptr)
+int		ft_get_img_data(t_image *img, void *mlx_ptr, t_cub *cub)
 {
 	img->img_ptr = mlx_xpm_file_to_image(mlx_ptr, img->path,
 										&img->r.x, &img->r.y);
@@ -28,7 +28,11 @@ int		ft_get_img_data(t_image *img, void *mlx_ptr)
 		return (1);
 	}
 	else
+	{
+		cub->start = no;
+		cub->end = yes;
 		return (0);
+	}
 }
 
 /*
@@ -37,16 +41,16 @@ int		ft_get_img_data(t_image *img, void *mlx_ptr)
 
 void	ft_generate_texture(t_cub *cub)
 {
-	if (ft_get_img_data(&cub->text.no_img, cub->mlx_ptr) == 0)
-		ft_close_pgm_bis(cub);
-	if (ft_get_img_data(&cub->text.so_img, cub->mlx_ptr) == 0)
-		ft_close_pgm_bis(cub);
-	if (ft_get_img_data(&cub->text.we_img, cub->mlx_ptr) == 0)
-		ft_close_pgm_bis(cub);
-	if (ft_get_img_data(&cub->text.ea_img, cub->mlx_ptr) == 0)
-		ft_close_pgm_bis(cub);
-	if (ft_get_img_data(&cub->text.s_img, cub->mlx_ptr) == 0)
-		ft_close_pgm_bis(cub);
+	if (ft_get_img_data(&cub->text.no_img, cub->mlx_ptr, cub) == 0)
+		ft_close_pgm(cub);
+	if (ft_get_img_data(&cub->text.so_img, cub->mlx_ptr, cub) == 0)
+		ft_close_pgm(cub);
+	if (ft_get_img_data(&cub->text.we_img, cub->mlx_ptr, cub) == 0)
+		ft_close_pgm(cub);
+	if (ft_get_img_data(&cub->text.ea_img, cub->mlx_ptr, cub) == 0)
+		ft_close_pgm(cub);
+	if (ft_get_img_data(&cub->text.s_img, cub->mlx_ptr, cub) == 0)
+		ft_close_pgm(cub);
 }
 
 /*

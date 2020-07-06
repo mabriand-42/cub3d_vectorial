@@ -23,9 +23,9 @@
 ** Retourne un entier positif.
 */
 
-size_t	ft_axis(char *line, size_t *pos)
+unsigned int	ft_axis(char *line, size_t *pos)
 {
-	size_t axis;
+	unsigned int axis;
 
 	axis = 0;
 	if (ft_isspace(line[*pos]) == 1 || line[*pos] == '\t')
@@ -56,14 +56,14 @@ size_t	ft_axis(char *line, size_t *pos)
 ** Retourne 0 en cas d'erreur, 1 si tout est OK.
 */
 
-int		ft_xy(char *line, size_t *pos, t_reso *r)
+int				ft_xy(char *line, size_t *pos, unsigned int *x, unsigned int *y)
 {
 	int	ret;
 
 	ret = 0;
-	if ((r->x = ft_axis(line, pos)) != 0)
+	if ((*x = ft_axis(line, pos)) != 0)
 	{
-		if ((r->y = ft_axis(line, pos)) != 0)
+		if ((*y = ft_axis(line, pos)) != 0)
 		{
 			if (ft_isspace(line[*pos]) == 1 || line[*pos] == '\t')
 				ft_skip_spaces(line, pos);
@@ -91,12 +91,26 @@ int		ft_xy(char *line, size_t *pos, t_reso *r)
 ** Retourne 0 en cas d'erreur, 1 si tout est OK.
 */
 
-int		ft_r(char *line, size_t *pos, t_reso *r, t_bool *check)
+int				ft_r(char *line, size_t *pos, t_reso *r, t_bool *check)
 {
-	if ((ft_xy(line, pos, r) == 1) && (*check == no))
+	unsigned int x;
+	unsigned int y;
+
+	x = 0;
+	y = 0;
+	if ((ft_xy(line, pos, &x, &y) == 1) && (*check == no))
 	{
 		*check = yes;
+		if (x > 2147483647)
+			r->x = 2147483647;
+		else
+			r->x = (int)x;
+		if (y > 2147483647)
+			r->y = 2147483647;
+		else
+			r->y = (int)y;
 		return (1);
 	}
+	ft_printf("Please make sure you put a valid resolution... \n");
 	return (0);
 }

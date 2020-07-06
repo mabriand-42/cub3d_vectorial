@@ -107,5 +107,6 @@ int	ft_cf(char *line, size_t *pos, t_color *color, t_bool *check)
 		*check = yes;
 		return (1);
 	}
+	ft_printf("Please make sure you put valid RGB colors... \n");
 	return (0);
 }

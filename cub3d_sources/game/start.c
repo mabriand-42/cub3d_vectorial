@@ -69,8 +69,8 @@ int		ft_start(t_cub *cub)
 
 int		ft_game_starter(t_cub *cub)
 {
-	ft_generate_texture(cub);
 	ft_init_image(cub);
+	ft_generate_texture(cub);
 	if ((cub->win.win_ptr = mlx_new_window(cub->mlx_ptr,
 		cub->win.r.x, cub->win.r.y, "test")) == NULL)
 		return (0);

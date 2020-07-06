@@ -22,6 +22,8 @@ void	ft_init_cub(t_cub *cub)
 	ft_init_player(&(cub->player));
 	ft_init_cast(&(cub->cast));
 	ft_init_draw(&(cub->draw));
+	cub->start = yes;
+	cub->end = no;
 }
 
 /*
