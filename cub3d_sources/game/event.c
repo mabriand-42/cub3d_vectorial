@@ -16,19 +16,48 @@
 ** Coms
 */
 
+int		ft_close_pgm_bis(t_cub *cub)
+{
+	ft_free_img(cub);
+	if (cub->img.img_ptr != NULL)
+		mlx_destroy_image(cub->mlx_ptr, cub->img.img_ptr);
+	ft_free_mlx_ptr(cub->mlx_ptr);
+	ft_free_path(cub);
+	ft_free_sprite(cub);
+	ft_free_tab(cub->box_map);
+	ft_printf("Error : Texture\n");
+	exit(EXIT_SUCCESS);
+	return (0);
+}
+
+
+/*
+** Coms
+*/
+
 int		ft_close_pgm(t_cub *cub)
 {
 	ft_free_img(cub);
-	mlx_destroy_image(cub->mlx_ptr, cub->img.img_ptr);
+	if (cub->img.img_ptr != NULL)
+		mlx_destroy_image(cub->mlx_ptr, cub->img.img_ptr);
 	mlx_clear_window(cub->mlx_ptr, cub->win.win_ptr);
 	mlx_destroy_window(cub->mlx_ptr, cub->win.win_ptr);
 	ft_free_mlx_ptr(cub->mlx_ptr);
 	ft_free_path(cub);
 	ft_free_sprite(cub);
 	ft_free_tab(cub->box_map);
-	exit(EXIT_SUCCESS);
 	ft_printf("BYE !");
+	exit(EXIT_SUCCESS);
 	return (0);
+}
+
+/*
+** Coms
+*/
+
+int		ft_close_pgm_ter(t_cub *cub)
+{
+	return(ft_press_mana(K_ESC, cub));
 }
 
 /*
@@ -58,5 +87,5 @@ int		ft_press_mana(int keycode, t_cub *cub)
 void	ft_event(t_cub *cub)
 {
 	mlx_hook(cub->win.win_ptr, 2, 1L << 0, ft_press_mana, cub);
-	mlx_hook(cub->win.win_ptr, 17, 1L << 17, ft_close_pgm, cub);
+	mlx_hook(cub->win.win_ptr, 17, 1L << 17, ft_close_pgm_ter, cub);
 }

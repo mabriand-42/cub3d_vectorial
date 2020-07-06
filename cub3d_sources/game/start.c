@@ -55,7 +55,9 @@ int		ft_start(t_cub *cub)
 		ft_init_image(cub);
 		ft_generate_texture(cub);
 		if (ft_raycast(cub) == 0)
+		{
 			return (ft_close_pgm(cub));
+		}
 		ft_save(cub);
 	}
 	return (1);
@@ -67,11 +69,11 @@ int		ft_start(t_cub *cub)
 
 int		ft_game_starter(t_cub *cub)
 {
+	ft_generate_texture(cub);
+	ft_init_image(cub);
 	if ((cub->win.win_ptr = mlx_new_window(cub->mlx_ptr,
 		cub->win.r.x, cub->win.r.y, "test")) == NULL)
 		return (0);
-	ft_init_image(cub);
-	ft_generate_texture(cub);
 	if (ft_raycast(cub) == 0)
 		return (0);
 	mlx_put_image_to_window(cub->mlx_ptr, cub->win.win_ptr,

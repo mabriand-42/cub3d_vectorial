@@ -38,15 +38,15 @@ int		ft_get_img_data(t_image *img, void *mlx_ptr)
 void	ft_generate_texture(t_cub *cub)
 {
 	if (ft_get_img_data(&cub->text.no_img, cub->mlx_ptr) == 0)
-		ft_close_pgm(cub);
+		ft_close_pgm_bis(cub);
 	if (ft_get_img_data(&cub->text.so_img, cub->mlx_ptr) == 0)
-		ft_close_pgm(cub);
+		ft_close_pgm_bis(cub);
 	if (ft_get_img_data(&cub->text.we_img, cub->mlx_ptr) == 0)
-		ft_close_pgm(cub);
+		ft_close_pgm_bis(cub);
 	if (ft_get_img_data(&cub->text.ea_img, cub->mlx_ptr) == 0)
-		ft_close_pgm(cub);
+		ft_close_pgm_bis(cub);
 	if (ft_get_img_data(&cub->text.s_img, cub->mlx_ptr) == 0)
-		ft_close_pgm(cub);
+		ft_close_pgm_bis(cub);
 }
 
 /*

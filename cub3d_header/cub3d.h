@@ -80,12 +80,16 @@ int		ft_duo_line_cp(char *prev, char *next, size_t *ptr_i, size_t *ptr_j);
 void	ft_create_map(t_map *map, char *next, int *ret);
 int		ft_lines(char *line, char *next, t_map *map, t_data *data);
 int		ft_check_end(char *str, size_t *pos);
+int		ft_index_zero(char c1, char *line);
 /*
 ** Parsing
 */
 int		ft_elem_parsing(char *line, t_data *data);
 int		ft_orient_gnl(int ret_gnl, t_map *map, t_data *data, t_duo duo);
 int		ft_get_config(char *id, char *line, size_t *pos, t_data *c);
+int		ft_zero_gnl(t_map *m, char *str, t_duo duo, t_data *c);
+int		ft_past_gnl(int	fd, t_pars *ptr);
+int		ft_nz_gnl(t_map *m, char *str, t_duo duo, t_data *c);
 
 /*
 ** ---------------------------------------------------------------RAY CASINTG---
@@ -132,6 +136,8 @@ void	ft_my_mlx_pixel_put(t_image *image, int x, int y, int color);
 ** Hook
 */
 int		ft_close_pgm(t_cub *cub);
+int		ft_close_pgm_bis(t_cub *cub);
+int		ft_close_pgm_ter(t_cub *cub);
 int		ft_press_mana(int keycode, t_cub *cub);
 void	ft_move_wa(int keycode, t_cub *cub);
 void	ft_move_sd(int keycode, t_cub *cub);
@@ -174,9 +180,6 @@ void	ft_equivalent_data(t_pars *pars_data, t_cub *cub);
 int		ft_check_input(t_pars *pars, t_cub *cub, int ac, char **av);
 void	ft_save(t_cub *cub);
 /*
-** Init
-*/
-/*
 ** Run
 */
 void	ft_init_pars_struct(t_pars *ptr);
@@ -184,20 +187,14 @@ int		ft_parse_fd(char *fd_path, t_pars *cub);
 int		ft_start(t_cub *cub);
 void	ft_init_cub(t_cub *cub);
 int		ft_game_starter(t_cub *cub);
+/*
+** Free
+*/
 void	ft_free_path(t_cub *cub);
 void	ft_free_mlx_ptr(void *mlx_ptr);
 void	ft_free_sprite(t_cub *cub);
 void	ft_free_tab(char **tab);
 void	ft_free_img(t_cub *cub);
-
-
-
-
-int		ft_index_zero(char c1, char *line);
 void	ft_free_path_bis(t_data *c);
-/*int		ft_parse_line(int *ret_gnl, int fd, t_duo *duo, t_pars *ptr);*/
-int		ft_zero_gnl(t_map *m, char *str, t_duo duo, t_data *c);
-int		ft_past_gnl(int	fd, t_pars *ptr);
-int		ft_nz_gnl(t_map *m, char *str, t_duo duo, t_data *c);
 
 #endif

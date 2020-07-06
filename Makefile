@@ -41,7 +41,7 @@ SRCS += cub3d_sources/main.c
 
 ##################################### BASIC ####################################
 
-CFLAGS 	=	-Wall -Wextra -Werror #-g3 -fsanitize=address
+CFLAGS 	=	-Wall -Wextra -Werror
 
 CC		= 	clang
 
@@ -68,17 +68,13 @@ $(OBJS): %.o: %.c $(HEADER)
 $(NAME): $(OBJS)
 	ar rcs $@ $(OBJS) $(LIB)
 	ranlib $(NAME)
+	$(CC) $(CFLAGS) $(OBJS) $(LIB) $(MLX) -lm -lXext -lX11 -o Cub3D
 
 complib:
 	$(MAKE) -C libft all
 
 compmlx:
 	$(MAKE) -C minilibx-linux all
-
-#-------------------------------EXEC-#
-
-exe : $(NAME)
-	$(CC) $(CFLAGS) $(OBJS) $(LIB) $(MLX) -lm -lXext -lX11 -o Cub3D
 
 #------------------------------CLEAN-#
 
@@ -88,6 +84,7 @@ cleanlib:
 
 cleanmlx:
 	rm -f minilibx-linux/*.o
+	rm -f minilibx-linux/test/*.o
 	rm $(MLX)
 
 cleancub:
@@ -96,11 +93,13 @@ cleancub:
 	rm -f cub3d_sources/main.o
 	rm libcub3d.a
 
+cleanbmp:
+	rm screenshot.bmp
+
 clean: cleanlib cleanmlx cleancub
 
-fclean: clean
-	#rm Cub3D
-	#rm screenshot.bmp
+fclean: all clean
+	rm Cub3D
 
 #---------------------------------RE-#
 
