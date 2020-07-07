@@ -15,7 +15,7 @@
 
 # define FOV 60
 # define PI 3.14159265
-# define STEP_MOV 0.05
+# define STEP_MOV 0.08
 # define STEP_ROT 0.05
 
 # include "key_linux.h"

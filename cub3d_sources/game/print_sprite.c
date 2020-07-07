@@ -21,8 +21,8 @@ void	ft_transform_sprite(t_cub *cub, int i)
 	t_vect	sprite;
 	double	matrix;
 
-	sprite.x = cub->spr.coor[cub->spr.rank[i]].x - cub->player.pos.x;
-	sprite.y = cub->spr.coor[cub->spr.rank[i]].y - cub->player.pos.y;
+	sprite.x = cub->spr.coor[cub->spr.rank[i]].x + 0.5 - cub->player.pos.x;
+	sprite.y = cub->spr.coor[cub->spr.rank[i]].y + 0.5 - cub->player.pos.y;
 	matrix = 1.0 / (cub->player.plane.x * cub->player.dir.y -
 					cub->player.plane.y * cub->player.dir.x);
 	cub->spr.trans.x = matrix * (cub->player.dir.y * sprite.x -
@@ -73,6 +73,8 @@ void	ft_loop(t_cub *cub, t_box s, double *dst)
 		loop.y = cub->draw.spr_h.x;
 		cub->cast.in_t.x = (int)(256 * (loop.x - (-s.x / 2 + cub->spr.s_cam))
 							* cub->text.s_img.r.x) / s.x / 256;
+		if (cub->cast.in_t.x < 0)
+			cub->cast.in_t.x = 0;
 		if (cub->spr.trans.y > 0 && loop.x > 0 &&
 			cub->spr.trans.y < dst[cub->draw.spr_w.x]
 			&& loop.x < cub->img.r.x)
@@ -81,6 +83,8 @@ void	ft_loop(t_cub *cub, t_box s, double *dst)
 			{
 				d = loop.y * 256 - cub->img.r.y * 128 + s.y * 128;
 				cub->cast.in_t.y = ((d * cub->text.s_img.r.y) / s.y) / 256;
+				if (cub->cast.in_t.y < 0)
+					cub->cast.in_t.y = 0;
 				cub->spr.color = cub->text.s_img.i_addr[cub->text.s_img.r.y
 						* cub->cast.in_t.y + cub->cast.in_t.x];
 				ft_print_s_color(cub, loop.x, loop.y);

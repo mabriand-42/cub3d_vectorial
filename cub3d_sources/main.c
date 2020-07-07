@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 	if (ft_start(&cub) == 0)
 	{
 		ft_close_pgm(&cub);
-		ft_printf("Couldn't start raycasting... \n");
+		ft_printf("Error\nCouldn't start raycasting... \n");
 		return (0);
 	}
 	return (0);

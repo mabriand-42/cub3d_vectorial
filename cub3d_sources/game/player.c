@@ -91,7 +91,7 @@ int		ft_get_player_data(t_cub *cub)
 {
 	if (ft_get_player_pos(cub) == 0)
 	{
-		ft_printf("Are you sure your player is valid? \n");
+		ft_printf("Error\nAre you sure your player is valid? \n");
 		return (0);
 	}
 	ft_get_plane(cub);

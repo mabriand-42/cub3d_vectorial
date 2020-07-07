@@ -111,6 +111,6 @@ int				ft_r(char *line, size_t *pos, t_reso *r, t_bool *check)
 			r->y = (int)y;
 		return (1);
 	}
-	ft_printf("Please make sure you put a valid resolution... \n");
+	ft_printf("Error\nPlease make sure you put a valid resolution... \n");
 	return (0);
 }

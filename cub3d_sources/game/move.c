@@ -16,7 +16,7 @@
 ** Coms
 */
 
-void	ft_move_wa(int keycode, t_cub *cub)
+void	ft_move_ws(int keycode, t_cub *cub)
 {
 	if (keycode == K_W)
 	{
@@ -29,7 +29,7 @@ void	ft_move_wa(int keycode, t_cub *cub)
 						+ cub->player.dir.x * STEP_MOV)]) == 1)
 			cub->player.pos.x += cub->player.dir.x * STEP_MOV;
 	}
-	if (keycode == K_A)
+	if (keycode == K_S)
 	{
 		if (ft_iswalkable(cub->box_map[(int)(cub->player.pos.y
 						- cub->player.dir.y * STEP_MOV)]
@@ -46,7 +46,7 @@ void	ft_move_wa(int keycode, t_cub *cub)
 ** Coms
 */
 
-void	ft_move_sd(int keycode, t_cub *cub)
+void	ft_move_ad(int keycode, t_cub *cub)
 {
 	if (keycode == K_D)
 	{
@@ -59,7 +59,7 @@ void	ft_move_sd(int keycode, t_cub *cub)
 						+ cub->player.plane.x * STEP_MOV)]) == 1)
 			cub->player.pos.x += cub->player.plane.x * STEP_MOV;
 	}
-	if (keycode == K_S)
+	if (keycode == K_A)
 	{
 		if (ft_iswalkable(cub->box_map[(int)(cub->player.pos.y
 						- cub->player.plane.y * STEP_MOV)]

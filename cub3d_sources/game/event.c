@@ -27,7 +27,7 @@ int		ft_close_pgm(t_cub *cub)
 		mlx_destroy_window(cub->mlx_ptr, cub->win.win_ptr);
 	}
 	else
-		ft_printf("Please check the path of your textures! \n");
+		ft_printf("Error\nPlease check the path of your textures! \n");
 	if (cub->end == yes)
 		ft_free_mlx_ptr(cub->mlx_ptr);
 	ft_free_path(cub);
@@ -50,10 +50,10 @@ int		ft_press_mana(int keycode, t_cub *cub)
 		cub->end = yes;
 		return (ft_close_pgm(cub));
 	}
-	if (keycode == K_W || keycode == K_A)
-		ft_move_wa(keycode, cub);
-	if (keycode == K_S || keycode == K_D)
-		ft_move_sd(keycode, cub);
+	if (keycode == K_W || keycode == K_S)
+		ft_move_ws(keycode, cub);
+	if (keycode == K_A || keycode == K_D)
+		ft_move_ad(keycode, cub);
 	if (keycode == K_AR_R || keycode == K_AR_L)
 		ft_rotate(keycode, cub);
 	ft_raycast(cub);

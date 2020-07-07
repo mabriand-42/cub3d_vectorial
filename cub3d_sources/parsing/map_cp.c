@@ -111,7 +111,7 @@ int		ft_past_gnl(int fd, t_pars *ptr)
 	close(fd);
 	if (ptr->map.card == not_given || ptr->map.end == no)
 	{
-		ft_printf("Are you sure your player is valid? \n");
+		ft_printf("Error\nAre you sure your player is valid? \n");
 		ft_free_path_bis(&(ptr->data));
 		free(ptr->map.map);
 		return (0);

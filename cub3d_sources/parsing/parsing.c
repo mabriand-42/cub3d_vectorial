@@ -104,7 +104,7 @@ int		ft_orient_gnl(int ret_gnl, t_map *m, t_data *c, t_duo duo)
 		{
 			ft_free_path_bis(c);
 			if (m->first == yes)
-				ft_printf("Something's wrong with your map description... \n");
+				ft_printf("Error\nSomething's wrong with your map description... \n");
 			return (0);
 		}
 	}
@@ -113,7 +113,7 @@ int		ft_orient_gnl(int ret_gnl, t_map *m, t_data *c, t_duo duo)
 		if (ft_nz_gnl(m, str, duo, c) == 0)
 		{
 			if (m->first == yes)
-				ft_printf("Something's wrong with your map description... \n");
+				ft_printf("Error\nSomething's wrong with your map description... \n");
 			return (0);
 		}
 	}

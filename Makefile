@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libcub3d.a
+NAME = Cub3D
 
 ##################################### PATH #####################################
 
@@ -54,7 +54,7 @@ OBJS	=	$(SRCS:.c=.o)
 LIB 	= 	libft/libft.a
 
 MLX 	+=	minilibx-linux/libmlx.a \
-			minilibx-linux/libmlx_Linux.a
+			minilibx-linux/libmlx_Linux.a #sert à rien
 
 ##################################### RULES ####################################
 
@@ -66,9 +66,7 @@ $(OBJS): %.o: %.c $(HEADER)
 #-------------------------------COMP-#
 
 $(NAME): $(OBJS)
-	ar rcs $@ $(OBJS) $(LIB)
-	ranlib $(NAME)
-	$(CC) $(CFLAGS) $(OBJS) $(LIB) $(MLX) -lm -lXext -lX11 -o Cub3D
+	$(CC) $(CFLAGS) $(OBJS) $(LIB) $(MLX) -lm -lXext -lX11 -o $@
 
 complib:
 	$(MAKE) -C libft all
@@ -79,27 +77,20 @@ compmlx:
 #------------------------------CLEAN-#
 
 cleanlib:
-	rm -f libft/libft_sources/*/*.o
-	rm $(LIB)
+	$(MAKE) -C libft clean
 
 cleanmlx:
-	rm -f minilibx-linux/*.o
-	rm -f minilibx-linux/test/*.o
-	rm $(MLX)
+	$(MAKE) -C minilibx-linux clean
 
 cleancub:
 	rm -f $(PARSE)*.o
 	rm -f $(GAME)*.o
 	rm -f cub3d_sources/main.o
-	rm libcub3d.a
-
-cleanbmp:
-	rm screenshot.bmp
 
 clean: cleanlib cleanmlx cleancub
 
-fclean: all clean
-	rm Cub3D
+fclean: clean
+	rm $(NAME)
 
 #---------------------------------RE-#
 
