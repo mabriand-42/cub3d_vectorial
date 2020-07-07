@@ -101,6 +101,16 @@ typedef struct	s_sprite
 	int		s_cam;
 }				t_sprite;
 
+typedef struct	s_move
+{
+	int w_on;
+	int s_on;
+	int a_on;
+	int d_on;
+	int ar_r_on;
+	int ar_l_on;
+}				t_move;
+
 typedef struct	s_cub
 {
 	void		*mlx_ptr;
@@ -116,6 +126,7 @@ typedef struct	s_cub
 	t_sprite	spr;
 	t_bool		start;
 	t_bool		end;
+	t_move		move;
 }				t_cub;
 
 #endif

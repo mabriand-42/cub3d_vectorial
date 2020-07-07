@@ -35,7 +35,7 @@ SRCS += $(GAME)draw.c					$(GAME)event.c \
 		$(GAME)save.c					$(GAME)sprite_gathering.c \
 		$(GAME)start.c					$(GAME)texture_mapping.c \
 		$(GAME)texture.c				$(GAME)wall.c \
-		$(GAME)free.c
+		$(GAME)free.c					$(GAME)hook.c
 #-------------------------------MAIN-#
 SRCS += cub3d_sources/main.c
 

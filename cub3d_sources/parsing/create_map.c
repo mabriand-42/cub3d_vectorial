@@ -138,7 +138,7 @@ int		ft_check_end(char *str, size_t *pos)
 {
 	if (*pos == 0)
 		return (ft_closed_map(str, pos));
-	if (str[*pos - 1] != '1' || str[*pos] != '1')
+	if (str[*pos - 1] != '1' || (str[*pos] != '1' && str[*pos] != ' '))
 		return (0);
 	return (ft_closed_map(str, pos));
 }
