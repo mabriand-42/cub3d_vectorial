@@ -85,5 +85,6 @@ int	ft_text(char *line, size_t *pos, char **path, t_bool *check)
 			return (1);
 		}
 	}
+	ft_printf("Error\nPlease check the path of your textures!\n");
 	return (0);
 }

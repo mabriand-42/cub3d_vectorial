@@ -90,7 +90,8 @@ cleancub:
 clean: cleanlib cleanmlx cleancub
 
 fclean: clean
-	rm $(NAME)
+	$(MAKE) -C libft clean
+	$(RM) $(NAME)
 
 #---------------------------------RE-#
 

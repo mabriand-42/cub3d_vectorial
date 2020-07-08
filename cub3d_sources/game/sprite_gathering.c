@@ -44,13 +44,13 @@ size_t	ft_sprite_count(char **map)
 
 void	ft_sprite_stock(int nbr, char **map, t_cub *cub)
 {
-	int			i;
-	int			x;
-	int			y;
+	int		i;
+	int		x;
+	int		y;
 
 	i = 0;
 	y = 0;
-	cub->spr.coor = (t_box *)malloc(sizeof(t_box) * nbr);
+	cub->spr.coor = (t_vect *)malloc(sizeof(t_vect) * nbr);
 	if (cub->spr.coor == NULL)
 		return ;
 	while (map[y] != NULL)
@@ -60,8 +60,8 @@ void	ft_sprite_stock(int nbr, char **map, t_cub *cub)
 		{
 			if (map[y][x] == '2')
 			{
-				cub->spr.coor[i].x = x;
-				cub->spr.coor[i].y = y;
+				cub->spr.coor[i].x = (double)x + 0.5;
+				cub->spr.coor[i].y = (double)y + 0.5;
 				i++;
 			}
 			x++;

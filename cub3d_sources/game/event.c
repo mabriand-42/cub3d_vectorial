@@ -28,13 +28,15 @@ int		ft_close_pgm(t_cub *cub)
 	}
 	else
 		ft_printf("Error\nPlease check the path of your textures! \n");
-	if (cub->end == yes)
+	if (cub->end == yes && cub->cross == no)
 		ft_free_mlx_ptr(cub->mlx_ptr);
 	ft_free_path(cub);
 	ft_free_sprite(cub);
 	ft_free_tab(cub->box_map);
-	//if (cub->start == yes && cub->end == yes)
-	ft_printf("BYE !\n\n");
+	if (cub->start == yes && cub->end == yes && cub->cross == yes)
+		ft_printf("BYE !\n\n");
+	if (cub->start == yes && cub->end == no && cub->cross == yes)
+		ft_printf("BYE !\n\n");	
 	exit(EXIT_SUCCESS);
 	return (0);
 }
@@ -51,15 +53,6 @@ int		ft_press_mana(int keycode, t_cub *cub)
 		cub->end = yes;
 		return (ft_close_pgm(cub));
 	}
-	if (keycode == K_W || keycode == K_S)
-		ft_move_ws(keycode, cub);
-	if (keycode == K_A || keycode == K_D)
-		ft_move_ad(keycode, cub);
-	if (keycode == K_AR_R || keycode == K_AR_L)
-		ft_rotate(keycode, cub);
-	ft_raycast(cub);
-	mlx_put_image_to_window(cub->mlx_ptr, cub->win.win_ptr,
-							cub->img.img_ptr, 0, 0);
 	return (0);
 }
 
@@ -91,6 +84,18 @@ int			ft_refresh(t_cub *cub)
 {
 	ft_check_key_on(cub);
 	ft_raycast(cub);
+	if (cub->bool_img == 0)
+	{
+		mlx_put_image_to_window(cub->mlx_ptr, cub->win.win_ptr,
+							cub->img.img_ptr, 0, 0);
+		cub->bool_img = 1;
+	}
+	else if (cub->bool_img == 1)
+	{
+		mlx_put_image_to_window(cub->mlx_ptr, cub->win.win_ptr,
+							cub->img2.img_ptr, 0, 0);
+		cub->bool_img = 0;
+	}
 	return (0);
 }
 
@@ -100,6 +105,7 @@ int			ft_refresh(t_cub *cub)
 
 void	ft_event(t_cub *cub)
 {
+	cub->cross = yes;
 	mlx_hook(cub->win.win_ptr, 3, 1L << 1, ft_key_release, &cub->move);
 	mlx_hook(cub->win.win_ptr, 2, 1L << 0, ft_press_mana, cub);
 	mlx_hook(cub->win.win_ptr, 17, 1L << 17, ft_close_pgm, cub);

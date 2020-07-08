@@ -41,6 +41,7 @@ void	ft_check_screen(t_cub *cub)
 int		ft_start(t_cub *cub)
 {
 	cub->done = yes;
+	cub->bool_img = 0;
 	if ((cub->mlx_ptr = mlx_init()) == NULL)
 		return (0);
 	ft_check_screen(cub);

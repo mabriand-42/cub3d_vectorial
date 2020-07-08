@@ -93,7 +93,7 @@ typedef struct	s_draw
 typedef struct	s_sprite
 {
 	size_t	count;
-	t_box	*coor;
+	t_vect	*coor;
 	double	*dist;
 	size_t	*rank;
 	t_vect	trans;
@@ -116,6 +116,8 @@ typedef struct	s_cub
 	void		*mlx_ptr;
 	t_window	win;
 	t_image		img;
+	t_image		img2;
+	t_bool		bool_img;
 	t_bool		save;
 	t_bool		done;
 	char		**box_map;
@@ -127,6 +129,7 @@ typedef struct	s_cub
 	t_bool		start;
 	t_bool		end;
 	t_move		move;
+	t_bool		cross;
 }				t_cub;
 
 #endif

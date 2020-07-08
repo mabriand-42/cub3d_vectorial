@@ -57,7 +57,10 @@ void	ft_mapping(t_cub *cub, t_image texture, int i, int *j)
 		cub->cast.in_t.y = (int)text & (texture.r.y - 1);
 		pos = texture.r.y * cub->cast.in_t.y + cub->cast.in_t.x;
 		color = mlx_get_color_value(cub->mlx_ptr, texture.i_addr[pos]);
-		ft_my_mlx_pixel_put(&cub->img, i, *j, color);
+		if (cub->bool_img == 0)
+			ft_my_mlx_pixel_put(&cub->img, i, *j, color);
+		else
+			ft_my_mlx_pixel_put(&cub->img2, i, *j, color);
 		text += step;
 		(*j)++;
 	}

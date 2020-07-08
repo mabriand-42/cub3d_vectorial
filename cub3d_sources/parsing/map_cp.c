@@ -134,6 +134,8 @@ int		ft_nz_gnl(t_map *m, char *str, t_duo duo, t_data *c)
 		|| (ret_ep == 1 && m->first == yes && m->end == no &&
 		ft_lines(str, duo.prev, m, c) == 0) || (ret_ep == 0))
 	{
+		if (ret_ep == 0 || ret_ep == -1)
+			ft_printf("Your file .cub is invalid\n");
 		free(str);
 		ft_free_path_bis(c);
 		return (0);

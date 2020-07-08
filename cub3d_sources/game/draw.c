@@ -71,13 +71,19 @@ void	ft_draw(t_cub *cub, int i)
 	j = 0;
 	while (j < cub->draw.wall.x)
 	{
-		ft_my_mlx_pixel_put(&cub->img, i, j, cub->draw.c_rgb);
+		if (cub->bool_img == 0)
+			ft_my_mlx_pixel_put(&cub->img, i, j, cub->draw.c_rgb);
+		else
+			ft_my_mlx_pixel_put(&cub->img2, i, j, cub->draw.c_rgb);
 		j++;
 	}
 	ft_mapping(cub, *texture, i, &j);
 	while (j >= cub->draw.wall.y && j < cub->img.r.y)
 	{
-		ft_my_mlx_pixel_put(&cub->img, i, j, cub->draw.f_rgb);
+		if (cub->bool_img == 0)
+			ft_my_mlx_pixel_put(&cub->img, i, j, cub->draw.f_rgb);
+		else
+			ft_my_mlx_pixel_put(&cub->img2, i, j, cub->draw.f_rgb);
 		j++;
 	}
 }
@@ -101,5 +107,10 @@ void	ft_my_mlx_pixel_put(t_image *image, int x, int y, int color)
 void	ft_print_s_color(t_cub *cub, int x, int y)
 {
 	if ((cub->spr.color & 0x00FFFFFF) != 0)
-		ft_my_mlx_pixel_put(&cub->img, x, y, cub->spr.color);
+	{
+		if (cub->bool_img == 0)
+			ft_my_mlx_pixel_put(&cub->img, x, y, cub->spr.color);
+		else
+			ft_my_mlx_pixel_put(&cub->img2, x, y, cub->spr.color);
+	}
 }

@@ -72,4 +72,12 @@ void	ft_init_image(t_cub *cub)
 						&cub->img.size_line, &cub->img.endian);
 		cub->img.i_addr = (int*)cub->img.addr;
 	}
+	cub->img2.img_ptr = mlx_new_image(cub->mlx_ptr, cub->img.r.x,
+					cub->img.r.y);
+	if (cub->img2.img_ptr != NULL)
+	{
+		cub->img2.addr = mlx_get_data_addr(cub->img2.img_ptr, &cub->img2.bpp,
+						&cub->img2.size_line, &cub->img2.endian);
+		cub->img2.i_addr = (int*)cub->img2.addr;
+	}
 }

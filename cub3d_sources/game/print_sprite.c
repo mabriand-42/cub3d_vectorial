@@ -21,8 +21,8 @@ void	ft_transform_sprite(t_cub *cub, int i)
 	t_vect	sprite;
 	double	matrix;
 
-	sprite.x = cub->spr.coor[cub->spr.rank[i]].x + 0.5 - cub->player.pos.x;
-	sprite.y = cub->spr.coor[cub->spr.rank[i]].y + 0.5 - cub->player.pos.y;
+	sprite.x = cub->spr.coor[cub->spr.rank[i]].x - cub->player.pos.x; //0.5+
+	sprite.y = cub->spr.coor[cub->spr.rank[i]].y - cub->player.pos.y;//0.5+
 	matrix = 1.0 / (cub->player.plane.x * cub->player.dir.y -
 					cub->player.plane.y * cub->player.dir.x);
 	cub->spr.trans.x = matrix * (cub->player.dir.y * sprite.x -
