@@ -21,6 +21,8 @@ int		ft_close_pgm(t_cub *cub)
 	ft_free_img(cub);
 	if (cub->img.img_ptr != NULL)
 		mlx_destroy_image(cub->mlx_ptr, cub->img.img_ptr);
+	if (cub->img2.img_ptr != NULL)
+		mlx_destroy_image(cub->mlx_ptr, cub->img2.img_ptr);
 	if (cub->start == yes)
 	{
 		mlx_clear_window(cub->mlx_ptr, cub->win.win_ptr);
