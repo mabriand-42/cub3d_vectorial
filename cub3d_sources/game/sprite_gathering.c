@@ -51,6 +51,7 @@ void	ft_sprite_stock(int nbr, char **map, t_cub *cub)
 	i = 0;
 	y = 0;
 	cub->spr.coor = (t_vect *)malloc(sizeof(t_vect) * nbr);
+
 	if (cub->spr.coor == NULL)
 		return ;
 	while (map[y] != NULL)

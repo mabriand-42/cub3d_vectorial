@@ -34,6 +34,7 @@ void	ft_get_slice(t_cub *cub, double *dst, int index)
 				(1 - cub->cast.step.x) / 2) / cub->cast.ray_dir.x;
 	}
 	dst[index] = cub->cast.slice;
+
 }
 
 /*

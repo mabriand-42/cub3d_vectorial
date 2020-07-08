@@ -97,7 +97,7 @@ int		ft_cmp_prev_next(char c1, char *line, size_t index)
 		return (0);
 	if (c1 == ' ' && (c2 == '0' || c2 == '2' || ft_iscardinal(c2) == 1))
 		return (0);
-	else if (c1 == ' ' && (c3 == '0' || c3 == '2' || ft_iscardinal(c2) == 1))
+	else if (c1 == ' ' && (c3 == '0' || c3 == '2' || ft_iscardinal(c3) == 1))
 		return (0);
 	else if ((c1 == '0' || c1 == '2') && (c2 == ' ' || c3 == ' '))
 		return (0);
