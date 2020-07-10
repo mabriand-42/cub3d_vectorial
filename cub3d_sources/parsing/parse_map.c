@@ -83,16 +83,13 @@ int		ft_cmp_char(char c1, char c2, t_map *map)
 
 int		ft_cmp_prev_next(char c1, char *line, size_t index)
 {
-	size_t	i_next;
-	size_t	i_prev;
 	char	c2;
 	char	c3;
+
 	if (index == 0)
 		return (ft_index_zero(c1, line));
-	i_next = index + 1;
-	i_prev = index - 1;
-	c2 = line[i_prev];
-	c3 = line[i_next];
+	c2 = line[index - 1];
+	c3 = line[index + 1];
 	if (index == 0 && (c1 == '0' || c1 == '2' || ft_iscardinal(c1) == 1))
 		return (0);
 	if (c1 == ' ' && (c2 == '0' || c2 == '2' || ft_iscardinal(c2) == 1))

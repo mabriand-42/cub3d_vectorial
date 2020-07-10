@@ -24,13 +24,11 @@ void	ft_transform_sprite(t_cub *cub, int i)
 	sprite.x = cub->spr.coor[cub->spr.rank[i]].x - cub->player.pos.x;
 	sprite.y = cub->spr.coor[cub->spr.rank[i]].y - cub->player.pos.y;
 	matrix = 1.0 / (cub->player.plane.x * cub->player.dir.y -
-					cub->player.plane.y * cub->player.dir.x);
+					cub->player.dir.x * cub->player.plane.y);
 	cub->spr.trans.x = matrix * (cub->player.dir.y * sprite.x -
 									cub->player.dir.x * sprite.y);
 	cub->spr.trans.y = matrix * (-cub->player.plane.y * sprite.x +
 									cub->player.plane.x * sprite.y);
-	cub->spr.s_cam = (int)((cub->img.r.x / 2) *
-						(1 + cub->spr.trans.x / cub->spr.trans.y));
 }
 
 /*
@@ -41,6 +39,8 @@ void	ft_get_sprite(t_cub *cub, double *dst)
 {
 	t_box	s;
 
+	cub->spr.s_cam = (int)((cub->img.r.x / 2) *
+						(1 + cub->spr.trans.x / cub->spr.trans.y));
 	s.y = abs((int)(cub->img.r.y / cub->spr.trans.y));
 	s.x = abs((int)(cub->img.r.y / cub->spr.trans.y));
 	cub->draw.spr_h.x = -s.y / 2 + cub->img.r.y / 2;
@@ -64,34 +64,30 @@ void	ft_get_sprite(t_cub *cub, double *dst)
 
 void	ft_loop(t_cub *cub, t_box s, double *dst)
 {
-	t_box	loop;
-	int		d;
+	int	h;
+	int	d;
 
-	loop.x = cub->draw.spr_w.x;
-	while (loop.x < cub->draw.spr_w.y)
+	while (cub->draw.spr_w.x < cub->draw.spr_w.y)
 	{
-		loop.y = cub->draw.spr_h.x;
-		cub->cast.in_t.x = (int)(256 * (loop.x - (-s.x / 2 + cub->spr.s_cam))
-							* cub->text.s_img.r.x) / s.x / 256;
+		h = cub->draw.spr_h.x;
+		cub->cast.in_t.x = (int)(256 * (cub->draw.spr_w.x - (-s.x / 2 +
+					cub->spr.s_cam)) * cub->text.s_img.r.x) / s.x / 256;
 		if (cub->cast.in_t.x < 0)
 			cub->cast.in_t.x = 0;
-		if (cub->spr.trans.y > 0 && loop.x > 0 &&
-			cub->spr.trans.y < dst[cub->draw.spr_w.x]
-			&& loop.x < cub->img.r.x)
+		if (cub->spr.trans.y > 0 && cub->draw.spr_w.x > 0 && cub->spr.trans.y
+				< dst[cub->draw.spr_w.x] && cub->draw.spr_w.x < cub->img.r.x)
 		{
-			while (loop.y < cub->draw.spr_h.y)
+			while (h < cub->draw.spr_h.y)
 			{
-				d = loop.y * 256 - cub->img.r.y * 128 + s.y * 128;
+				d = h * 256 - cub->img.r.y * 128 + s.y * 128;
 				cub->cast.in_t.y = ((d * cub->text.s_img.r.y) / s.y) / 256;
 				if (cub->cast.in_t.y < 0)
 					cub->cast.in_t.y = 0;
-				cub->spr.color = cub->text.s_img.i_addr[cub->text.s_img.r.y
-						* cub->cast.in_t.y + cub->cast.in_t.x];
-				ft_print_s_color(cub, loop.x, loop.y);
-				loop.y++;
+				ft_print_s_color(cub, cub->draw.spr_w.x, h);
+				h++;
 			}
 		}
-		loop.x++;
+		cub->draw.spr_w.x++;
 	}
 }
 

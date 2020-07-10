@@ -38,7 +38,7 @@ int		ft_close_pgm(t_cub *cub)
 	if (cub->start == yes && cub->end == yes && cub->cross == yes)
 		ft_printf("BYE !\n\n");
 	if (cub->start == yes && cub->end == no && cub->cross == yes)
-		ft_printf("BYE !\n\n");	
+		ft_printf("BYE !\n\n");
 	exit(EXIT_SUCCESS);
 	return (0);
 }
@@ -62,7 +62,7 @@ int		ft_press_mana(int keycode, t_cub *cub)
 ** Coms
 */
 
-void		ft_check_key_on(t_cub *cub)
+void	ft_check_key_on(t_cub *cub)
 {
 	if (cub->move.w_on == 1)
 		ft_move_ws(K_W, cub);
@@ -82,7 +82,7 @@ void		ft_check_key_on(t_cub *cub)
 ** Coms
 */
 
-int			ft_refresh(t_cub *cub)
+int		ft_refresh(t_cub *cub)
 {
 	ft_check_key_on(cub);
 	ft_raycast(cub);

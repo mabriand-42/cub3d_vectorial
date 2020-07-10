@@ -34,7 +34,6 @@ void	ft_get_slice(t_cub *cub, double *dst, int index)
 				(1 - cub->cast.step.x) / 2) / cub->cast.ray_dir.x;
 	}
 	dst[index] = cub->cast.slice;
-
 }
 
 /*
@@ -107,6 +106,8 @@ void	ft_my_mlx_pixel_put(t_image *image, int x, int y, int color)
 
 void	ft_print_s_color(t_cub *cub, int x, int y)
 {
+	cub->spr.color = cub->text.s_img.i_addr[cub->text.s_img.r.y
+						* cub->cast.in_t.y + cub->cast.in_t.x];
 	if ((cub->spr.color & 0x00FFFFFF) != 0)
 	{
 		if (cub->bool_img == 0)

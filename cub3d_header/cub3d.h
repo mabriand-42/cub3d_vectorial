@@ -146,6 +146,9 @@ void			ft_rotate(int keycode, t_cub *cub);
 void			ft_rotate_right(t_cub *cub);
 void			ft_rotate_left(t_cub *cub);
 int				ft_iswalkable(char c);
+int				ft_key_release(int keycode, t_move *move);
+int				ft_key_push(int keycode, t_move *move);
+void			ft_check_key_on(t_cub *cub);
 /*
 ** Texture
 */
@@ -197,13 +200,5 @@ void			ft_free_sprite(t_cub *cub);
 void			ft_free_tab(char **tab);
 void			ft_free_img(t_cub *cub);
 void			ft_free_path_bis(t_data *c);
-
-
-int			ft_key_release(int keycode, t_move *move);
-int			ft_key_push(int keycode, t_move *move);
-void		ft_check_key_on(t_cub *cub);
-
-
-
 
 #endif

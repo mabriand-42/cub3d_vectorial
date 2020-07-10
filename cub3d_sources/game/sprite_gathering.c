@@ -51,7 +51,6 @@ void	ft_sprite_stock(int nbr, char **map, t_cub *cub)
 	i = 0;
 	y = 0;
 	cub->spr.coor = (t_vect *)malloc(sizeof(t_vect) * nbr);
-
 	if (cub->spr.coor == NULL)
 		return ;
 	while (map[y] != NULL)
@@ -93,8 +92,6 @@ void	ft_sprite_dist(t_cub *cub)
 					(cub->player.pos.x - cub->spr.coor[i].x) +
 					(cub->player.pos.y - cub->spr.coor[i].y) *
 					(cub->player.pos.y - cub->spr.coor[i].y));
-		//printf("pos.x = %f, pos.y = %f\n sprite.x = %f, sprite.y = %f\n", cub->player.pos.x, cub->player.pos.y, cub->spr.coor[i].x, cub->spr.coor[i].y);
-		//printf("distance calculée au rang %zu = %f\n", i, cub->spr.dist[i]);
 		i++;
 	}
 }
@@ -105,7 +102,7 @@ void	ft_sprite_dist(t_cub *cub)
 
 void	ft_sort_sprite(t_cub *cub)
 {
-	size_t		i;
+	size_t	i;
 	int		swap_rank;
 	double	swap_dist;
 
@@ -137,11 +134,4 @@ void	ft_gather_sprite(t_cub *cub)
 	ft_sprite_stock(cub->spr.count, cub->box_map, cub);
 	ft_sprite_dist(cub);
 	ft_sort_sprite(cub);
-	/*size_t i = 0;
-	while (i < cub->spr.count)
-	{
-		printf("sprite n°%zu, coor = [%f,%f], dist = %f\n", i, cub->spr.coor[i].x, cub->spr.coor[i].y, cub->spr.dist[i]);
-		i++;
-	}*/
-
 }

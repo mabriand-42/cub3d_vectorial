@@ -114,7 +114,6 @@ int		ft_check_input(t_pars *pars, t_cub *cub, int ac, char **av)
 	if (ret_parse == 0)
 	{
 		ft_free_tab(cub->box_map);
-		//ft_printf("Error\nYour file .cub seems invalid! \n");
 		return (0);
 	}
 	return (1);
