@@ -58,3 +58,23 @@ void	ft_free_mlx_ptr(void *mlx_ptr)
 	XCloseDisplay(xvar->display);
 	free(xvar);
 }
+
+/*
+** Coms
+*/
+
+void	ft_check_key_on(t_cub *cub)
+{
+	if (cub->move.w_on == 1)
+		ft_move_ws(K_W, cub);
+	if (cub->move.s_on == 1)
+		ft_move_ws(K_S, cub);
+	if (cub->move.a_on == 1)
+		ft_move_ad(K_A, cub);
+	if (cub->move.d_on == 1)
+		ft_move_ad(K_D, cub);
+	if (cub->move.ar_r_on == 1)
+		ft_rotate(K_AR_R, cub);
+	if (cub->move.ar_l_on == 1)
+		ft_rotate(K_AR_L, cub);
+}

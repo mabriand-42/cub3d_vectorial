@@ -81,6 +81,7 @@ void			ft_create_map(t_map *map, char *next, int *ret);
 int				ft_lines(char *line, char *next, t_map *map, t_data *data);
 int				ft_check_end(char *str, size_t *pos);
 int				ft_index_zero(char c1, char *line);
+int				ft_is_map_line(char *str);
 /*
 ** Parsing
 */
@@ -136,8 +137,7 @@ void			ft_my_mlx_pixel_put(t_image *image, int x, int y, int color);
 ** Hook
 */
 int				ft_close_pgm(t_cub *cub);
-int				ft_close_pgm_bis(t_cub *cub);
-int				ft_close_pgm_ter(t_cub *cub);
+int				ft_close_pgm_cross(t_cub *cub);
 int				ft_press_mana(int keycode, t_cub *cub);
 void			ft_move_ws(int keycode, t_cub *cub);
 void			ft_move_ad(int keycode, t_cub *cub);

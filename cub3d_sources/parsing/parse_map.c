@@ -143,3 +143,22 @@ int		ft_duo_line(char *next, char *prev, t_map *map)
 	}
 	return (ft_duo_line_cp(next, prev, &i, &j));
 }
+
+/*
+** Coms
+*/
+
+int		ft_is_map_line(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (ft_isvalidchar(str[i]) == 1 || ft_iscardinal(str[i]) == 1)
+			i++;
+		else
+			return (0);
+	}
+	return (1);
+}

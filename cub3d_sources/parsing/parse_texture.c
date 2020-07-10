@@ -72,14 +72,19 @@ int	ft_path(char *line, size_t *pos, size_t save_pos, char **path)
 int	ft_text(char *line, size_t *pos, char **path, t_bool *check)
 {
 	size_t	save_pos;
+	int		ret;
 
 	save_pos = 0;
+	ret = 0;
 	(*pos)++;
+	if (*check == yes)
+		return (0);
 	if (ft_isspace(line[*pos]) == 1 || line[*pos] == '\t')
 	{
 		ft_skip_spaces(line, pos);
 		save_pos = *pos - 1;
-		if ((ft_path(line, pos, save_pos, path) == 1) && (*check == no))
+		ret = ft_path(line, pos, save_pos, path);
+		if ((ret == 1) && (*check == no))
 		{
 			*check = yes;
 			return (1);

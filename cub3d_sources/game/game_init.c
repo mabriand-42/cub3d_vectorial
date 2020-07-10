@@ -22,8 +22,13 @@ void	ft_init_cub(t_cub *cub)
 	ft_init_player(&(cub->player));
 	ft_init_cast(&(cub->cast));
 	ft_init_draw(&(cub->draw));
+	cub->move.w_on = 0;
+	cub->move.s_on = 0;
+	cub->move.a_on = 0;
+	cub->move.d_on = 0;
+	cub->move.ar_r_on = 0;
+	cub->move.ar_l_on = 0;
 	cub->start = yes;
-	cub->cross = no;
 	cub->end = no;
 }
 

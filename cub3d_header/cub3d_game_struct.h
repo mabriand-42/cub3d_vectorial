@@ -126,10 +126,9 @@ typedef struct	s_cub
 	t_draw		draw;
 	t_texture	text;
 	t_sprite	spr;
+	t_move		move;
 	t_bool		start;
 	t_bool		end;
-	t_move		move;
-	t_bool		cross;
 }				t_cub;
 
 #endif
